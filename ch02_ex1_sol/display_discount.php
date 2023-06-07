@@ -3,8 +3,23 @@
 
 <?php
 	$product_description = filter_input(INPUT_POST, 'product_description');
-	$list_price = filter_input(INPUT_POST, 'list_price');
-	$discount_percent = filter_input(INPUT_POST, 'discount_percent');
+    // added third argument with common constant to validate float
+	$list_price = filter_input(INPUT_POST, 'list_price', FILTER_VALIDATE_FLOAT);
+	$discount_percent = filter_input(INPUT_POST, 'discount_percent',FILTER_VALIDATE_FLOAT);
+
+        // validate for errors redirect to index.html page and pass error params to the URL
+        if(is_numeric($product_description) || $list_price === false || $discount_percent === false) {
+            $errorParam = "";
+            if(is_numeric($product_description)) {
+                $errorParam = "product_description_error=1";
+            } elseif ($list_price === false) {
+                $errorParam = "list_price_error=1";
+            } elseif ($discount_percent === false) {
+                $errorParam = "discount_percent_error=1";
+            }
+            header("Location: index.html?error=1&$errorParam");
+            exit();
+        }
 	
         $discount = $list_price * $discount_percent * .01;
         $discount_price = $list_price - $discount;
@@ -20,6 +35,7 @@
         $discount_percent_f = $discount_percent."%";
         $discount_f = "$".number_format($discount, 2);
         $discount_price_f = "$".number_format($discount_price, 2);
+
         // format sales tax rate
         $salesTaxRate_f = ($salesTaxRate * 100)."%";
         // format sales tax amount
