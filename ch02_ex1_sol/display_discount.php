@@ -9,19 +9,22 @@
 
         // validate for errors and store messages in an array
         $errorArray = array();
-        if(is_numeric($product_description)) {
-            $prodError = "Product can not be a number ";
+        // check for string and special characters using regex
+        if(!is_string($product_description) || !preg_match('/^[a-zA-Z\s]+$/', $product_description)) {
+            $prodError = "Product description must be letter characters";
             $errorArray[] = $prodError;
         }
-        if ($list_price === false) {
-            $listError = "List price must be a number ";
+        // check for numbers
+        if ($list_price === false || $list_price <= 0) {
+            $listError = "List price must be a number and > 0";
             $errorArray[] = $listError;
         }
-        if ($discount_percent === false) {
-            $discountError = "Discount must be a number ";
+        // check for numbers
+        if ($discount_percent === false || $discount_percent <= 0) {
+            $discountError = "Discount must be a number and > 0";
             $errorArray[] = $discountError;
         }
-        // If errors exist include html file
+        // If errors exist include html file to display errors
         if(!empty($errorArray)){
             include('index.html');
             exit();
