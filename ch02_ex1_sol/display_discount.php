@@ -7,17 +7,23 @@
 	$list_price = filter_input(INPUT_POST, 'list_price', FILTER_VALIDATE_FLOAT);
 	$discount_percent = filter_input(INPUT_POST, 'discount_percent',FILTER_VALIDATE_FLOAT);
 
-        // validate for errors redirect to index.html page and pass error params to the URL
-        if(is_numeric($product_description) || $list_price === false || $discount_percent === false) {
-            $errorParam = "";
-            if(is_numeric($product_description)) {
-                $errorParam = "product_description_error=1";
-            } elseif ($list_price === false) {
-                $errorParam = "list_price_error=1";
-            } elseif ($discount_percent === false) {
-                $errorParam = "discount_percent_error=1";
-            }
-            header("Location: index.html?error=1&$errorParam");
+        // validate for errors and store messages in an array
+        $errorArray = array();
+        if(is_numeric($product_description)) {
+            $prodError = "Product can not be a number ";
+            $errorArray[] = $prodError;
+        }
+        if ($list_price === false) {
+            $listError = "List price must be a number ";
+            $errorArray[] = $listError;
+        }
+        if ($discount_percent === false) {
+            $discountError = "Discount must be a number ";
+            $errorArray[] = $discountError;
+        }
+        // If errors exist include html file
+        if(!empty($errorArray)){
+            include('index.html');
             exit();
         }
 	
