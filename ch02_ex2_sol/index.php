@@ -7,7 +7,14 @@
     //set default value of variables for initial page load
     if (!isset($investment)) { $investment = ''; } 
     if (!isset($interest_rate)) { $interest_rate = ''; } 
-    if (!isset($years)) { $years = ''; } 
+    if (!isset($years)) { $years = ''; }
+
+    // set default values after calculations
+    if(isset($future_value)) {
+        $investment = '';
+        $interest_rate = '';
+        $years = '';
+    }
 ?>
 <!DOCTYPE html>
 <html>

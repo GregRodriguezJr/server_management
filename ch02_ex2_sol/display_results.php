@@ -38,10 +38,9 @@
         $error_message .= 'Years must be less than 31.<br>';
     } 
 
-    // include the form for errors and results
-    include('index.php');
-    // if an error message exists, display errors
+    // if an error message exists, display errors with form
     if ($error_message != '') {
+        include('index.php');
         exit();
       // added else statement to continue script if no errors exist
     } else {
@@ -54,6 +53,10 @@
         $investment_f = '$'.number_format($investment, 2);
         $yearly_rate_f = $interest_rate.'%';
         $future_value_f = '$'.number_format($future_value, 2);
+        // create extra $years variable, original is cleared from input
+        $year_f = $years;
+        // include the original form from index.php file
+        include('index.php');
     }
 ?>
 <!DOCTYPE html>
@@ -73,7 +76,7 @@
         <span><?php echo htmlspecialchars($yearly_rate_f); ?></span><br />
 
         <label>Number of Years:</label>
-        <span><?php echo htmlspecialchars($years); ?></span><br />
+        <span><?php echo htmlspecialchars($year_f); ?></span><br />
 
         <label>Future Value:</label>
         <span><?php echo htmlspecialchars($future_value_f); ?></span><br />
