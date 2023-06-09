@@ -1,3 +1,6 @@
+<!--Greg Rodriguez-->
+<!--Lab Assignment 2-2 B-->
+
 <?php
     // get the data from the form
     $investment = filter_input(INPUT_POST, 'investment',
@@ -35,21 +38,23 @@
         $error_message .= 'Years must be less than 31.<br>';
     } 
 
-    // if an error message exists, go to the index page
+    // include the form for errors and results
+    include('index.php');
+    // if an error message exists, display errors
     if ($error_message != '') {
-        include('index.php');
         exit();
+      // added else statement to continue script if no errors exist
+    } else {
+        // calculate the future value
+        $future_value = $investment;
+        for ($i = 1; $i <= $years; $i++) {
+            $future_value += $future_value * $interest_rate *.01;
+        }
+        // apply currency and percent formatting
+        $investment_f = '$'.number_format($investment, 2);
+        $yearly_rate_f = $interest_rate.'%';
+        $future_value_f = '$'.number_format($future_value, 2);
     }
-
-    // calculate the future value
-    $future_value = $investment;
-    for ($i = 1; $i <= $years; $i++) {
-        $future_value += $future_value * $interest_rate *.01;
-    }
-    // apply currency and percent formatting
-    $investment_f = '$'.number_format($investment, 2);
-    $yearly_rate_f = $interest_rate.'%';
-    $future_value_f = '$'.number_format($future_value, 2);
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,7 +64,7 @@
 </head>
 <body>
     <main>
-        <h1>Future Value Calculator</h1>
+        <!--removed duplicate title-->
 
         <label>Investment Amount:</label>
         <span><?php echo htmlspecialchars($investment_f); ?></span><br />
@@ -72,7 +77,7 @@
 
         <label>Future Value:</label>
         <span><?php echo htmlspecialchars($future_value_f); ?></span><br />
-        
+
         <p>This calculation was done on <?php echo date('m/d/Y'); ?>.</p>
     </main>
 </body>

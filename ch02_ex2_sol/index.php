@@ -1,9 +1,14 @@
-<?php 
+<!--Greg Rodriguez-->
+<!--Lab Assignment 2-2 B-->
+<!--Display the results below the form instead of on a separate page.-->
+<!--After each calculation, set the values in the text boxes to empty strings.-->
+
+<?php
     //set default value of variables for initial page load
     if (!isset($investment)) { $investment = ''; } 
     if (!isset($interest_rate)) { $interest_rate = ''; } 
     if (!isset($years)) { $years = ''; } 
-?> 
+?>
 <!DOCTYPE html>
 <html>
 <head>
