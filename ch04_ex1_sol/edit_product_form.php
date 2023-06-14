@@ -42,24 +42,18 @@
             method="post"
             id="add_product_form">
 
+            <!-- edit category -->
             <label>Category:</label>
-            <!-- Display current category name -->
-            <p> 
-                <?php 
-                    if($product['categoryID'] == 1) {
-                        echo "Guitars";
-                    } elseif ($product['categoryID'] == 2) {
-                        echo "Basses";
-                    } else {
-                        echo "Drums";
-                    }
-                ?> 
-            </p>
-            <!-- Added label to edit category -->
-            <label>New Category:</label>
             <select name="category_id">
                 <?php foreach ($categories as $category) : ?>
-                    <option value="<?php echo $category['categoryID']; ?>">
+                    <!-- set the default option dynamically based on product categoryID -->
+                    <?php 
+                        $selected = ($category['categoryID'] == $product['categoryID']) ? 'selected' : ''; 
+                    ?>
+                    <option 
+                        value="<?php echo $category['categoryID']; ?>" 
+                        <?php echo $selected; ?>
+                    >
                         <?php echo $category['categoryName']; ?>
                     </option>
                 <?php endforeach; ?>
