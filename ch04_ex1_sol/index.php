@@ -98,7 +98,7 @@ $statement3->closeCursor();
                     </td>
                     <!-- Added edit button to html -->
                     <td>
-                        <form action="edit_product.php" method="post">
+                        <form action="edit_product_form.php" method="post">
                             <input type="hidden" name="product_id"
                                 value="<?php echo $product['productID']; ?>">
                             <input type="hidden" name="category_id"
