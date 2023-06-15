@@ -10,7 +10,7 @@
     $categories = $statement->fetchAll();
     $statement->closeCursor();
 
-    // Get single product
+    // Get single product from edit_product_form post request 
     $product_id = $_POST['product_id'];
     $queryProduct ='SELECT productCode, productName, listPrice, categoryID
                     FROM products
@@ -42,6 +42,13 @@
             method="post"
             id="add_product_form">
 
+            <!-- pass productID in post request to edit product php -->
+            <input 
+                type="hidden" 
+                name="product_id"
+                value="<?php echo $product_id; ?>"
+            >
+
             <!-- edit category -->
             <label>Category:</label>
             <select name="category_id">
@@ -58,30 +65,29 @@
                     </option>
                 <?php endforeach; ?>
             </select><br>
-
-            <label>Code:</label>
+            
             <!-- Display placeholder of item -->
+            <label>Code:</label>
             <input 
                 type="text" 
                 name="code"
-                placeholder="<?php echo $product['productCode']; ?>"
-            >
-            <br>
-
-            <label>Name:</label>
+                value="<?php echo $product['productCode']; ?>"
+            ><br>
+            
             <!-- Display placeholder of item -->
+            <label>Name:</label>
             <input 
                 type="text" 
                 name="name"
-                placeholder="<?php echo $product['productName']; ?>"
+                value="<?php echo $product['productName']; ?>"
             ><br>
-
-            <label>List Price:</label>
+            
             <!-- Display placeholder of item -->
+            <label>List Price:<br></label>
             <input 
                 type="text" 
                 name="price"
-                placeholder="<?php echo $product['listPrice']; ?>"
+                value="<?php echo $product['listPrice']; ?>"
             ><br>
 
             <label>&nbsp;</label>
