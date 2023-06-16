@@ -73,13 +73,13 @@
 
     // handles the edit button to display product edit form for selected item
     } else if ($action == "show_edit_form") {
-        $product_id = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
-        if($product_id == NULL || $product_id == FALSE) {
-            $error = "Invalid product ID. Check ID and try again.";
-            include('../errors/error.php');
-        } else {
-            $product = get_product($product_id);
-            include('product_edit.php');
-        }
+        $product_id = filter_input(INPUT_GET, 'product_id');
+        $product = get_product($product_id);
+        $categories = get_categories();
+        include('product_edit.php');
+
+      // handles the update of the selected item  
+    } else if ($action == 'update_product') {
+        
     }
 ?>
