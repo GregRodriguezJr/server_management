@@ -70,5 +70,16 @@ if ($action == 'list_products') {
             FILTER_VALIDATE_INT);
     delete_category($category_id);
     header('Location: .?action=list_categories');      // display the Category List page
+
+  // handles the edit button to display product edit form for selected item
+} else if ($action == "show_edit_form") {
+    $product_id = filter_input(INPUT_GET, 'product_id', FILTER_VALIDATE_INT);
+    if($product_id == NULL || $product_id == FALSE) {
+        $error = "Invalid product ID. Check ID and try again.";
+        include('../errors/error.php');
+    } else {
+        $product = get_product($product_id);
+        include('product_edit.php');
+    }
 }
 ?>

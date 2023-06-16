@@ -36,18 +36,21 @@
                     </td>
                     <!-- Added edit button with form to html -->
                     <td>
-                        <form action="product_edit.php" method="post">
+                        <form action="index.php" method="get">
+                            <input 
+                                type="hidden" 
+                                name="action"
+                                value="show_edit_form"
+                            >
                             <input 
                                 type="hidden" 
                                 name="product_id"
                                 value="<?php echo $product['productID']; ?>"
                             >
                             <input 
-                                type="hidden" 
-                                name="category_id"
-                                value="<?php echo $product['categoryID']; ?>"
+                                type="submit" 
+                                value="Edit"
                             >
-                            <input type="submit" value="Edit">
                         </form>
                     </td>
                 </tr>
