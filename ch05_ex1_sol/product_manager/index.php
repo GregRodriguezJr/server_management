@@ -1,3 +1,5 @@
+<!-- Greg Rodriguez -->
+<!-- Lab Assignment 5-1 B -->
 <?php
     require('../model/database.php');
     require('../model/product_db.php');
@@ -80,6 +82,24 @@
 
       // handles the update of the selected item  
     } else if ($action == 'update_product') {
-        
+        $product_id = filter_input(INPUT_POST, 'product_id');
+        $category_id = filter_input(INPUT_POST, 'category_id');
+        $code = filter_input(INPUT_POST, 'code');
+        $name = filter_input(INPUT_POST, 'name');
+        $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
+        // Validate inputs
+        if ($price <= 0 || $price == false || 
+            // check if new imputs are strings and no special chars
+            !is_string($code) || !preg_match('/^[a-zA-Z\s]+$/', $code) ||
+            !is_string($name) || !preg_match('/^[a-zA-Z\s]+$/', $name)
+            ) {
+            $error = "Invalid product data. Check all fields and try again.";
+            include('../errors/error.php');
+        } else {
+            // call update product function to update database
+            update_product($category_id, $code, $name, $price, $product_id);
+            // displays the category page by category ID
+            header("Location: .?category_id=$category_id");
+        }
     }
 ?>

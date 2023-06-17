@@ -1,3 +1,5 @@
+<!-- Greg Rodriguez -->
+<!-- Lab Assignment 5-1 B -->
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Edit Product</h1>
@@ -57,8 +59,10 @@
             <label>&nbsp;</label>
             <input type="submit" value="Update">
         </form>
-        <p class="last_paragraph">
-            <a href="index.php?action=list_products">View Product List</a>
-        </p>
+        <div style="border: solid white; margin-top: 2em;">
+            <p>
+                <a href="index.php?action=list_products">View Product List</a>
+            </p>
+        </div>
     </main>
 <?php include '../view/footer.php'; ?>

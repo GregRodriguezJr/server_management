@@ -1,3 +1,5 @@
+<!-- Greg Rodriguez -->
+<!-- Lab Assignment 5-1 B -->
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Product List</h1>
