@@ -7,6 +7,11 @@
     $years = filter_input(INPUT_POST, 'years', 
             FILTER_VALIDATE_INT);
 
+    // print out the values entered into input
+    echo "investment input: " . $investment . "<br>";
+    echo "interest rate input: " . $interest_rate . "<br>";
+    echo "years input: " . $years . "<br>";
+
     // set default error message of empty string
     $error_message = '';
     
@@ -43,6 +48,8 @@
     $future_value = $investment;
     for ($i = 1; $i <= $years; $i++) {
         $future_value += $future_value * $interest_rate; 
+        // echo future value each iteration
+        echo "i:" . $i . " future value: " . $future_value . "<br>";
     }
 
     // apply currency and percent formatting
