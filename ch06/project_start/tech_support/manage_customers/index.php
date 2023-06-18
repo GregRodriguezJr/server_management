@@ -15,8 +15,8 @@
 
     if($action == 'customer_search_form') {
         include('customer_search.php');
-        
-        // action to search for customers by lastname
+
+      // action to search for customers by lastname
     } else if ($action == 'search_customers') {
         $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
         $error_message = "";
@@ -29,8 +29,13 @@
             $no_results = empty($customers);
         }
         include('customer_search.php');
-    }
 
+      // action handles customer edit form  
+    } else if ($action == "show_edit_form") {
+        $customer_id = filter_input(INPUT_GET, 'customer_id');
+        $customer = get_customer($customer_id);
+        include('customer_edit.php');
+    }
     if ($action == 'under_construction') {
         include('../under_construction.php');
     }

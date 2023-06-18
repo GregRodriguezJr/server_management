@@ -23,7 +23,7 @@
                 value="Search"
             >
         </form>
-        
+
         <!-- display error message for invalid inputs -->
         <?php if(isset($error_message)) : ?>
             <p class="error"><?php echo $error_message ?></p>
@@ -43,7 +43,25 @@
                     <td><?php echo $customer['firstName'] . ' ' . $customer['lastName']; ?></td>
                     <td><?php echo $customer['email']; ?></td>
                     <td><?php echo $customer['city']; ?></td>
-                    <td></td>
+                    <td>
+                        <!-- select btn for each customer to edit/view page -->
+                        <form action="index.php" method="get">
+                            <input 
+                                type="hidden" 
+                                name="action"
+                                value="show_edit_form"
+                            >
+                            <input 
+                                type="hidden" 
+                                name="customer_id"
+                                value="<?php echo $customer['customerID']; ?>"
+                            >
+                            <input 
+                                type="submit" 
+                                value="Select"
+                            >
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
