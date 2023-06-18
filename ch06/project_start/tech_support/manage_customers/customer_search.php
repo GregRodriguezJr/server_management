@@ -23,6 +23,13 @@
                 value="Search"
             >
         </form>
+        
+        <!-- display error message for invalid inputs -->
+        <?php if(isset($error_message)) : ?>
+            <p class="error"><?php echo $error_message ?></p>
+        <?php endif; ?>
+
+        <!-- display search results -->
         <h1>Results</h1>
         <table>
             <tr>
@@ -40,5 +47,9 @@
                 </tr>
             <?php endforeach; ?>
         </table>
+        <!-- Display to user if no results found -->
+        <?php if($no_results) : ?>
+            <p>No customers found with the last name  <?php echo $last_name ?> </p>
+        <?php endif; ?>
     </main>
 <?php include '../view/footer.php'; ?>

@@ -15,10 +15,19 @@
 
     if($action == 'customer_search_form') {
         include('customer_search.php');
+        
         // action to search for customers by lastname
     } else if ($action == 'search_customers') {
         $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
-        $customers = get_searched_customers($last_name);
+        $error_message = "";
+        // validate last name input
+        if(!is_string($last_name) || !preg_match('/^[a-zA-Z\s]+$/', $last_name)) {
+            $error_message = "Last name must be letter characters";
+        } else {
+            $customers = get_searched_customers($last_name);
+            // variable to check if no results
+            $no_results = empty($customers);
+        }
         include('customer_search.php');
     }
 
