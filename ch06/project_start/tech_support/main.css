@@ -1,3 +1,7 @@
+/* 
+Greg Rodriguez
+Project 6 
+*/
 html {
     background-color: #BFCFFE;    
 }
@@ -148,4 +152,9 @@ textarea {
 #aligned .message {
     margin-left: .5em;
     width: 15em;
+}
+
+/* added class for wider input box */
+#aligned .wide-input {
+    width: 20em;
 }
