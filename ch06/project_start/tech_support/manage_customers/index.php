@@ -9,13 +9,17 @@
     if ($action === NULL) {
         $action = filter_input(INPUT_GET, 'action');
         if ($action === NULL) {
-            $action = 'list_customers';
+            $action = 'customer_search_form';
         }
     }
 
-    if($action == 'list_customers') {
-        $customers = get_all_customers();
-        include('list_customers.php');
+    if($action == 'customer_search_form') {
+        include('customer_search.php');
+        // action to search for customers by lastname
+    } else if ($action == 'search_customers') {
+        $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
+        $customers = get_searched_customers($last_name);
+        include('customer_search.php');
     }
 
     if ($action == 'under_construction') {
