@@ -1,15 +1,14 @@
+<!-- Greg Rodriguez -->
+<!-- Lab Assignment 5-1 B -->
 <!DOCTYPE html>
 <html>
 
 <!-- the head section -->
 <head>
     <title>SportsPro Technical Support</title>
-    <!-- This method doesnt load css had to use php include to load css -->
-    <!-- <link rel="stylesheet" type="text/css"
-          href="/project_start/tech_support/main.css"> -->
-    <style>
-        <?php include 'main.css' ?>
-    </style>
+    <!-- changed path for local directory for css to load -->
+    <link rel="stylesheet" type="text/css"
+          href="/server_management/ch06/project_start/tech_support/main.css">
 </head>
 
 <!-- the body section -->
@@ -19,7 +18,10 @@
     <p>Sports management software for the sports enthusiast</p>
     <nav>
         <ul>
-            <li><a href="/project_start/tech_support/">Home</a></li>
+            <li>
+                <!-- changed path for local machine directory -->
+                <a href="/server_management/ch06/project_start/tech_support/">Home</a>
+            </li>
         </ul>
     </nav>
 </header>
