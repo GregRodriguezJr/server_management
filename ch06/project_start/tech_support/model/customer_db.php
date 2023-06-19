@@ -45,4 +45,38 @@
         $statement->closeCursor();
         return $customer;
     }
+
+    // updates customer fields
+    function update_customer($customer_id, $first_name, $last_name, $address, $city,
+    $state, $postal_code, $country_code, $phone, $email, $password) {
+        global $db;
+        $query = 
+            'UPDATE customers
+            SET customerID = :customer_id,
+                firstName = :first_name,
+                lastName = :last_name,
+                address = :address,
+                city = :city,
+                state = :state,
+                postalCode = :postal_code,
+                countryCode =:country_code,
+                phone = :phone,
+                email = :email,
+                password = :password
+            WHERE customerID = :customer_id';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':customer_id', $customer_id);
+        $statement->bindValue(':first_name', $first_name);
+        $statement->bindValue(':last_name', $last_name);
+        $statement->bindValue(':address', $address);
+        $statement->bindValue(':city', $city);
+        $statement->bindValue(':state', $state);
+        $statement->bindValue(':postal_code', $postal_code);
+        $statement->bindValue(':country_code', $country_code);
+        $statement->bindValue(':phone', $phone);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':password', $password);
+        $statement->execute();
+        $statement->closeCursor();
+    }
 ?>

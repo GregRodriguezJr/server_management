@@ -158,3 +158,8 @@ textarea {
 #aligned .wide-input {
     width: 20em;
 }
+
+/* success color */
+.success {
+    color: green;
+}
