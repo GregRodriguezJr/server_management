@@ -83,12 +83,12 @@
                         <!-- dynamically set customer country code as default option -->
                         <option 
                             value="<?php echo $country['countryCode']; ?>" 
-                            selected><?php echo $country['countryCode']; ?>
+                            selected><?php echo $country['countryName']; ?>
                         </option>
                     <?php else : ?>
                         <option 
                             value="<?php echo $country['countryCode']; ?>">
-                            <?php echo $country['countryCode']; ?>
+                            <?php echo $country['countryName']; ?>
                         </option>
                     <?php endif; ?>
                 <?php endforeach; ?>
