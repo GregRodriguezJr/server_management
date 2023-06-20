@@ -73,12 +73,27 @@
                 required
             ><br>
             <label>Country Code:</label>
-            <input 
-                type="text" 
+            <!-- added select element to loop through options and display all country codes -->
+            <select 
                 name="country_code"
-                value="<?php echo $customer['countryCode']?>"
                 required
-            ><br>
+            >
+                <?php foreach ($countries as $country) : ?>
+                    <?php if ($country['countryCode'] === $customer['countryCode']) : ?>
+                        <!-- dynamically set customer country code as default option -->
+                        <option 
+                            value="<?php echo $country['countryCode']; ?>" 
+                            selected><?php echo $country['countryCode']; ?>
+                        </option>
+                    <?php else : ?>
+                        <option 
+                            value="<?php echo $country['countryCode']; ?>">
+                            <?php echo $country['countryCode']; ?>
+                        </option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+            <br>
             <label>Phone:</label>
             <input 
                 type="tel" 

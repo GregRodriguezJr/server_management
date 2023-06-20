@@ -79,4 +79,18 @@
         $statement->execute();
         $statement->closeCursor();
     }
+
+    // query to return all countries
+    function get_all_countries() {
+        global $db;
+        $query = 
+                'SELECT * 
+                FROM countries
+                ORDER BY countryName ASC';
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $countries = $statement->fetchAll();
+        $statement->closeCursor();
+        return $countries;
+    }
 ?>

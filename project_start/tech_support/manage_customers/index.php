@@ -34,6 +34,8 @@
     } else if ($action == "show_edit_form") {
         $customer_id = filter_input(INPUT_GET, 'customer_id');
         $customer = get_customer($customer_id);
+        // added countries from db to edit form
+        $countries = get_all_countries();
         include('customer_edit.php');
 
       // action handles customer update  
@@ -69,6 +71,8 @@
                     $state, $postal_code, $country_code, $phone, $email, $password);
                 // get updated customer data
                 $customer = get_customer($customer_id);
+                // get updated countries from db
+                $countries = get_all_countries();
                 // set success variable and message
                 $success = true;
                 $success_message = "Customer information updated successfully!";
