@@ -6,7 +6,8 @@
             FILTER_VALIDATE_FLOAT);
     $years = filter_input(INPUT_POST, 'years', 
             FILTER_VALIDATE_INT);
-
+    $compound_monthly = filter_input(INPUT_POST, 'compound_monthly');
+    
     // validate investment
     if ($investment === FALSE ) {
         $error_message = 'Investment must be a valid number.'; 
@@ -35,10 +36,22 @@
         exit();
     }
 
-    // calculate the future value
-    $future_value = $investment;
-    for ($i = 1; $i <= $years; $i++) {
-        $future_value += $future_value * $interest_rate *.01;
+    if($compound_monthly == "on") {
+        // calulate the future value in months
+        $future_value = $investment;
+        for ($i = 1; $i <= $years * 12; $i++) {
+            $future_value += $future_value * ($interest_rate / 100 / 12);
+        }
+        // variable to display type of calculation
+        $compound_time = "Monthly";
+    } else {
+        // calculate the future value in years
+        $future_value = $investment;
+        for ($i = 1; $i <= $years; $i++) {
+            $future_value += $future_value * $interest_rate *.01;
+        }
+        // variable to display type of calculation
+        $compound_time = "Yearly";
     }
 
     // apply currency and percent formatting
@@ -59,7 +72,7 @@
         <label>Investment Amount:</label>
         <span><?php echo $investment_f; ?></span><br>
 
-        <label>Yearly Interest Rate:</label>
+        <label> <?php echo $compound_time ?> Interest Rate:</label>
         <span><?php echo $yearly_rate_f; ?></span><br>
 
         <label>Number of Years:</label>

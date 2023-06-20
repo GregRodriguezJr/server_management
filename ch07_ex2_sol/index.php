@@ -36,11 +36,20 @@
             </select><br>
 
             <label>Number of Years:</label>
-            <input type="text" name="years"
-                       value="<?php echo $years; ?>"/><br>
+            <input 
+                type="text" 
+                name="years"
+                value="<?php echo $years; ?>"
+            /><br>
         </div>
+
+        <label>Compound Interest Monthly</label>
+        <input
+            type="checkbox"
+            name="compound_monthly"
+        >
         
-        <div id="buttons">
+        <div class="calc-btn">
             <label>&nbsp;</label>
             <input type="submit" value="Calculate"/><br>
         </div>

@@ -35,3 +35,8 @@ br {
     color: red;
     font-weight: bold;
 }
+
+/* added padding to submit btn */
+.calc-btn {
+    margin-top: 2em;
+}
