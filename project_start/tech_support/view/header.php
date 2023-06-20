@@ -6,9 +6,9 @@
 <!-- the head section -->
 <head>
     <title>SportsPro Technical Support</title>
-    <!-- changed path for local directory for css to load -->
+    <!-- changed path for local directory for css to load, moved project out of sub directory -->
     <link rel="stylesheet" type="text/css"
-          href="/server_management/ch06/project_start/tech_support/main.css">
+          href="/server_management/project_start/tech_support/main.css">
 </head>
 
 <!-- the body section -->
@@ -19,8 +19,8 @@
     <nav>
         <ul>
             <li>
-                <!-- changed path for local machine directory -->
-                <a href="/server_management/ch06/project_start/tech_support/">Home</a>
+                <!-- changed path for local machine directory tree, moved project out of sub directory -->
+                <a href="/server_management/project_start/tech_support/">Home</a>
             </li>
         </ul>
     </nav>
