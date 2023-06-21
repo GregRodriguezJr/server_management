@@ -1,5 +1,5 @@
 <!-- Greg Rodriguez -->
-<!-- Project 6 -->
+<!-- Project -->
 <?php
     // return all customers from db
     function get_all_customers() {

@@ -1,5 +1,5 @@
 <!-- Greg Rodriguez -->
-<!-- Project 6 -->
+<!-- Project -->
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Customer Search</h1>

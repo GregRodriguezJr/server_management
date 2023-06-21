@@ -1,5 +1,5 @@
 <!-- Greg Rodriguez -->
-<!-- Lab Assignment 5-1 B -->
+<!-- Project -->
 <!DOCTYPE html>
 <html>
 
