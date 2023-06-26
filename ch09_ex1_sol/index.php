@@ -9,6 +9,8 @@ $message = 'Enter some data and click on the Submit button.';
 // set new variable values
 $middle_name = '';
 $last_name = '';
+$area_code = '';
+$phone_number = '';
 
 //process
 $action = filter_input(INPUT_POST, 'action');
@@ -88,11 +90,16 @@ switch ($action) {
             $part1 = substr($phone, 0, 3);
             $part2 = substr($phone, 3);
             $phone = $part1 . '-' . $part2;
+            // variable for phone number
+            $phone_number = $phone;
         } else {
             $part1 = substr($phone, 0, 3);
             $part2 = substr($phone, 3, 3);
             $part3 = substr($phone, 6);
             $phone = $part1 . '-' . $part2 . '-' . $part3;
+            // variable for phone number and area code
+            $area_code = $part1;
+            $phone_number = $part2 . '-' . $part3;
         }
 
         // format the message
@@ -106,7 +113,9 @@ switch ($action) {
             // display last name
             "Last Name: $last_name\n" .
             "Email: $email\n" .
-            "Phone: $phone\n";
+            // display area code and phone number seperatly
+            "Area Code: $area_code\n" .
+            "Phone Number: $phone_number\n";
 
         break;
 }
