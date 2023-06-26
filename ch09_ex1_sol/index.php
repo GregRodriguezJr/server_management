@@ -1,9 +1,14 @@
+<!-- Greg Rodriguez -->
+<!-- Lab Assignment 9-1B -->
 <?php
 //set default values
 $name = '';
 $email = '';
 $phone = '';
 $message = 'Enter some data and click on the Submit button.';
+// set new variable values
+$middle_name = '';
+$last_name = '';
 
 //process
 $action = filter_input(INPUT_POST, 'action');
@@ -35,6 +40,23 @@ switch ($action) {
             $first_name = $name;
         } else {
             $first_name = substr($name, 0, $i);
+        }
+
+        // split up name variable into an array to check for multiple names
+        $full_name = explode(' ', $name);
+
+        // get middle name from complete name if 3 names are entered
+        if(count($full_name) >= 3) {
+            $middle_name = $full_name[1];
+        } else {
+            $middle_name = '';
+        }
+
+        // get last name from complete name if 2 names are entered
+        if(count($full_name) >= 2) {
+            $last_name = $full_name[count($full_name) - 1];
+        } else {
+            $last_name = '';
         }
 
         // validate email
@@ -77,7 +99,12 @@ switch ($action) {
         $message =
             "Hello $first_name,\n\n" .
             "Thank you for entering this data:\n\n" .
-            "Name: $name\n" .
+            // display first name
+            "First Name: $first_name\n" .
+            // display middle name
+            "Midde Name: $middle_name\n" .
+            // display last name
+            "Last Name: $last_name\n" .
             "Email: $email\n" .
             "Phone: $phone\n";
 

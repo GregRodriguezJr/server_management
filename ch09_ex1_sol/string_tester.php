@@ -1,3 +1,5 @@
+<!-- Greg Rodriguez -->
+<!-- Lab Assignment 9-1B -->
 <!DOCTYPE html>
 <html>
 <head>
