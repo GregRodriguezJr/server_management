@@ -1,6 +1,12 @@
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Product List</h1>
+
+        <!-- diplay delete success message -->
+        <?php if(isset($delete_success)) : ?>
+            <p class="success"><?php echo $delete_success_message ?></p>
+        <?php endif; ?>
+        
         <!-- display all products -->
         <table>
             <tr>
@@ -18,7 +24,7 @@
                     <td><?php echo $product['releaseDate'] ?></td>
                     <td>
                         <!-- form for delete btn -->
-                        <form action="index.php" method="#">
+                        <form action="index.php" method="post">
                             <input
                                 type="hidden"
                                 name="action"
@@ -26,12 +32,13 @@
                             >
                             <input
                                 type="hidden"
-                                name="action"
+                                name="product_code"
                                 value="<?php echo $product['productCode'] ?>"
                             >
                             <input
                                 type="submit"
                                 value="Delete"
+                                onclick="return confirmSubmit()"
                             >
                         </form>
                     </td>
@@ -40,3 +47,16 @@
         </table>
     </main>
 <?php include '../view/footer.php'; ?>
+<!-- JS alert to confirm delete btn submission -->
+<?php
+    echo'<script type="text/Javascript">
+            const confirmSubmit = () => {
+                let agree = confirm("Are you sure you want to delete?");
+                if(agree){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>'
+?>
