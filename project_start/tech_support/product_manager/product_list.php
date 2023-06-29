@@ -45,6 +45,7 @@
                 </tr>
             <?php endforeach; ?>
         </table>
+        <p><a href="index.php?action=show_add_product">Add Product</a></p>
     </main>
 <?php include '../view/footer.php'; ?>
 <!-- JS alert to confirm delete btn submission -->

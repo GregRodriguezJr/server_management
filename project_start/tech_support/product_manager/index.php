@@ -31,6 +31,9 @@ switch ($action) {
         // show updated product list
         include('product_list.php'); 
         break;
+    case 'show_add_product':
+        include('product_add.php');
+        break;
     default:
         include('../under_construction.php');
         break;
