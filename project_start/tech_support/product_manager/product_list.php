@@ -50,6 +50,7 @@
         <p><a href="index.php?action=show_add_product">Add Product</a></p>
     </main>
 <?php include '../view/footer.php'; ?>
+<!-- Experimenting with client side JavaScript -->
 <!-- JS alert to confirm delete btn submission -->
 <?php
     echo'<script type="text/Javascript">
@@ -63,3 +64,9 @@
             }
         </script>'
 ?>
+<!-- JS alert to confirm the add product was complete -->
+<?php if(isset($_GET['add_success'])) : ?>
+    <script type="text/Javascript">
+        prompt("Product add was successful");
+    </script>
+<?php endif; ?>

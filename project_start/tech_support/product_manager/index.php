@@ -45,8 +45,9 @@ switch ($action) {
         $name = filter_input(INPUT_POST, 'name');
         $version = filter_input(INPUT_POST, 'version');
         $release_date = filter_input(INPUT_POST, 'release_date');
-        // set default error
+        // set default error and success variable
         $error = '';
+        $add_success = false;
         // validate inputs
         if(strlen($product_code) > 10) {
             $error .= "Product code cannot exceed 10 characters.<br>";
@@ -73,7 +74,10 @@ switch ($action) {
             include('../errors/error.php');
         } else {
             add_product($product_code, $name, $version, $release_date);
-            header("Location: .?action=show_products");
+            $add_success = true;
+            // pass the success variable param through the URL
+            header("Location: .?action=show_products&add_success=true");
+            exit;
         }
         break;
     default:
