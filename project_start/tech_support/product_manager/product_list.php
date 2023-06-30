@@ -1,3 +1,5 @@
+<!-- Greg Rodriguez -->
+<!-- Project -->
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Product List</h1>

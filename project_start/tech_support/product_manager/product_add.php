@@ -1,3 +1,5 @@
+<!-- Greg Rodriguez -->
+<!-- Project -->
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Add Product</h1>
@@ -41,7 +43,7 @@
                 required
             >
             <p style="margin-top: .25em;">
-                Use 'yyy-mm-dd' format
+                Use 'yyyy-mm-dd' format
             </p>
             <br>
 
