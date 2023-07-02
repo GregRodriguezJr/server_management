@@ -23,7 +23,8 @@
                     <td><?php echo $product['productCode'] ?></td>
                     <td><?php echo $product['name'] ?></td>
                     <td><?php echo $product['version'] ?></td>
-                    <td><?php echo $product['releaseDate'] ?></td>
+                    <!-- format date -->
+                    <td><?php echo ltrim(date('n-j-Y', strtotime($product['releaseDate'])), '0') ?></td>
                     <td>
                         <!-- form for delete btn -->
                         <form action="index.php" method="post">
@@ -67,6 +68,6 @@
 <!-- JS alert to confirm the add product was complete -->
 <?php if(isset($_GET['add_success'])) : ?>
     <script type="text/Javascript">
-        prompt("Product add was successful");
+        alert("Product add was successful");
     </script>
 <?php endif; ?>

@@ -45,9 +45,11 @@ switch ($action) {
         $name = filter_input(INPUT_POST, 'name');
         $version = filter_input(INPUT_POST, 'version');
         $release_date = filter_input(INPUT_POST, 'release_date');
+
         // set default error and success variable
         $error = '';
         $add_success = false;
+        
         // validate inputs
         if(strlen($product_code) > 10) {
             $error .= "Product code cannot exceed 10 characters.<br>";
@@ -58,17 +60,33 @@ switch ($action) {
         if(!is_numeric($version) || $version <= 0) {
             $error .= "Version must be a numeric value greater than zero.<br>";
         }
-        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $release_date)) {
-            $error .= 'Release date must be in the format yyyy-mm-dd.<br>';
-        } 
-        // Parse about any English textual datetime description into a Unix timestamp
-        $release_date_timestamp = strtotime($release_date);
-        if ($release_date === false || $release_date_timestamp === false) {
-            $error .= 'Invalid release date.<br>';
-        } 
-        if ($release_date_timestamp > time()) {
-            $error .= 'Release date cannot be in the future.<br>';
+
+        // validate date
+        // hardcoded the date formats
+        $date_formats = array(
+            'm/d/Y', 'd/m/Y', 'Y/m/d', 'Y/d/m',
+            'm-d-Y', 'd-m-Y', 'Y-m-d', 'Y-d-m'
+            );
+
+        // variable to store the formatted date
+        $formatted_date = '';
+
+        // iterate over the date formats and attempt to parse the input
+        foreach ($date_formats as $format) {
+            $parsed_date = date_create_from_format($format, $release_date);
+            if ($parsed_date !== false) {
+                $formatted_date = $parsed_date->format('Y-m-d');
+                break;
+            }
         }
+
+        // Check if a valid date was found
+        if (!empty($formatted_date)) {
+            $release_date = $formatted_date;
+        } else {
+            $error .= "Invalid date format!";
+        }
+
         // display error page
         if(!empty($error)) {
             include('../errors/error.php');

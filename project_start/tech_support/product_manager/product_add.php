@@ -43,7 +43,7 @@
                 required
             >
             <p style="margin-top: .25em;">
-                Use 'yyyy-mm-dd' format
+                Use any valid date format
             </p>
             <br>
 
