@@ -48,6 +48,8 @@
             <input type="text" name="newtask" id="newtask"> <br>
             <label>&nbsp;</label>
             <input type="submit" name="action" value="Add Task">
+            <!-- add btn for deleting task -->
+            <input type="submit" name="action" value="Remove Task">
         </form>
         <br>
 

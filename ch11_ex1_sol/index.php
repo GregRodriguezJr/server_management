@@ -25,7 +25,17 @@ switch( $action ) {
             $errors[] = 'The new task cannot be empty.';
         } else {
             // $task_list[] = $new_task;
-            array_push($task_list, $new_task);
+
+            // used unshift to prepend elements to beginning of the array
+            array_unshift($task_list, $new_task);
+        }
+        break;
+    // removes the task at the top of the list    
+    case 'Remove Task':
+        if(empty($task_list)) {
+            $errors[] = "Nothing to remove, the list is empty.";
+        } else {
+            array_shift($task_list);
         }
         break;
     case 'Delete Task':
