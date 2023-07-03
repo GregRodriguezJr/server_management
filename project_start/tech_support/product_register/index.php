@@ -3,6 +3,7 @@
 <?php
     require('../model/database.php');
     require('../model/customer_db.php');
+    require('../model/product_db.php');
 
     $action = filter_input(INPUT_POST, 'action');
     if ($action === NULL) {
@@ -30,8 +31,17 @@
                 $error_message = "User not found with the email: $email";
                 include('customer_login.php');
             } else {
+                // get products and display form
+                $products = get_all_products();
                 include('product_register_form.php');
             }
+            break;
+
+        // action from form submission to add registration to db
+        case 'register_product':
+            $customer_id = filter_input(INPUT_POST, 'customer_id');
+            $product_code = filter_input(INPUT_POST, 'product_code');
+            
             break;
 
         // default error page
