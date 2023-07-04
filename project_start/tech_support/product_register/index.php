@@ -4,6 +4,7 @@
     require('../model/database.php');
     require('../model/customer_db.php');
     require('../model/product_db.php');
+    require('../model/registrations_db.php');
 
     $action = filter_input(INPUT_POST, 'action');
     if ($action === NULL) {
@@ -41,7 +42,16 @@
         case 'register_product':
             $customer_id = filter_input(INPUT_POST, 'customer_id');
             $product_code = filter_input(INPUT_POST, 'product_code');
-            
+            // get the current date
+            $registrationDate = date("Y-m-d");
+            try {
+                new_registration($customer_id, $product_code, $registrationDate);
+                $success = true;
+                include('product_register_form.php');
+            } catch (Exception $e) {
+                $error = "An error occurred while registering the product: " . $e->getMessage();
+                include('../errors/error.php');
+            }
             break;
 
         // default error page
