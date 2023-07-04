@@ -1,5 +1,5 @@
 <!--Greg Rodriguez-->
-<!--Lab Assignment 2-2 B-->
+<!--Lab Assignment 13-1-->
 
 <?php
     // get the data from the form
@@ -9,6 +9,22 @@
         FILTER_VALIDATE_FLOAT);
     $years = filter_input(INPUT_POST, 'years',
         FILTER_VALIDATE_INT);
+
+    // functions
+    function calc_future_value($investment, $years, $interest_rate) {
+        for ($i = 1; $i <= $years; $i++) {
+            $investment += $investment * $interest_rate *.01;
+        }
+        return $investment;
+    };
+
+    function currency_format($num) {
+        return '$'.number_format($num, 2);
+    };
+
+    function percent_format($num) {
+        return $num.'%';
+    };
 
     // set default error message of empty string
     $error_message = '';
@@ -45,14 +61,11 @@
       // added else statement to continue script if no errors exist
     } else {
         // calculate the future value
-        $future_value = $investment;
-        for ($i = 1; $i <= $years; $i++) {
-            $future_value += $future_value * $interest_rate *.01;
-        }
+        $future_value = calc_future_value($investment, $years, $interest_rate);
         // apply currency and percent formatting
-        $investment_f = '$'.number_format($investment, 2);
-        $yearly_rate_f = $interest_rate.'%';
-        $future_value_f = '$'.number_format($future_value, 2);
+        $yearly_rate_f = percent_format($interest_rate);
+        $investment_f = currency_format($investment);
+        $future_value_f = currency_format($future_value);
         // create extra $years variable, original is cleared from input
         $year_f = $years;
         // include the original form from index.php file

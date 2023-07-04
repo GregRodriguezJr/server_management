@@ -1,7 +1,5 @@
 <!--Greg Rodriguez-->
-<!--Lab Assignment 2-2 B-->
-<!--Display the results below the form instead of on a separate page.-->
-<!--After each calculation, set the values in the text boxes to empty strings.-->
+<!--Lab Assignment 13-1-->
 
 <?php
     //set default value of variables for initial page load
