@@ -1,6 +1,6 @@
-<!-- Greg Rodriguez -->
-<!-- Project -->
 <?php 
+    declare(strict_types=1);
+    
     // get all products from database
     function get_all_products() {
         global $db;
@@ -29,7 +29,7 @@
     }
 
     // add product to db
-    function add_product($product_code, $name, $version, $release_date){
+    function add_product(string $product_code, string $name, float $version, string $release_date): void {
         global $db;
         $query = 'INSERT INTO products
                     (productCode, name, version, releaseDate)

@@ -91,11 +91,16 @@ switch ($action) {
         if(!empty($error)) {
             include('../errors/error.php');
         } else {
-            add_product($product_code, $name, $version, $release_date);
-            $add_success = true;
-            // pass the success variable param through the URL
-            header("Location: .?action=show_products&add_success=true");
-            exit;
+            try {
+                add_product($product_code, $name, $version, $release_date);
+                $add_success = true;
+                // pass the success variable param through the URL
+                header("Location: .?action=show_products&add_success=true");
+                exit;
+            } catch (TypeError $e) {
+                $error = "An error occurred while trying to add the product: " . $e->getMessage();
+                include('../errors/error.php');
+            }
         }
         break;
     default:
