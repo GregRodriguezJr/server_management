@@ -1,7 +1,10 @@
 <!--Greg Rodriguez-->
-<!--Lab Assignment 13-1-->
+<!--Lab Assignment 14-1B-->
 
 <?php
+    // include the FutureValue class
+    require_once 'FutureValue.php';
+
     // get the data from the form
     $investment = filter_input(INPUT_POST, 'investment',
         FILTER_VALIDATE_FLOAT);
@@ -10,50 +13,20 @@
     $years = filter_input(INPUT_POST, 'years',
         FILTER_VALIDATE_INT);
 
-    // functions
-    function calc_future_value($investment, $years, $interest_rate) {
-        for ($i = 1; $i <= $years; $i++) {
-            $investment += $investment * $interest_rate *.01;
-        }
-        return $investment;
-    };
+    // create an instance of the FutureValue class
+    $futureValueObj = new FutureValue();
 
-    function currency_format($num) {
-        return '$'.number_format($num, 2);
-    };
+    // set values
+    $futureValueObj->setInvestment($investment);
+    $futureValueObj->setInterestRate($interest_rate);
+    $futureValueObj->setYears($years);
 
-    function percent_format($num) {
-        return $num.'%';
-    };
+    // validate values
+    $error_message = $futureValueObj->validateValues();
 
     // set default error message of empty string
     $error_message = '';
     
-    // validate investment
-    if ($investment === FALSE ) {
-        $error_message .= 'Investment must be a valid number.<br>'; 
-    } else if ( $investment <= 0 ) {
-        $error_message .= 'Investment must be greater than zero.<br>'; 
-    } 
-    
-    // validate interest rate
-    if ( $interest_rate === FALSE )  {
-        $error_message .= 'Interest rate must be a valid number.<br>'; 
-    } else if ( $interest_rate <= 0 ) {
-        $error_message .= 'Interest rate must be greater than zero.<br>'; 
-    } else if ( $interest_rate > 15 ) {
-        $error_message .= 'Interest rate must be less than or equal to 15.<br>';
-    }
-    
-    // validate years
-    if ( $years === FALSE ) {
-        $error_message .= 'Years must be a valid whole number.<br>';
-    } else if ( $years <= 0 ) {
-        $error_message .= 'Years must be greater than zero.<br>';
-    } else if ( $years > 30 ) {
-        $error_message .= 'Years must be less than 31.<br>';
-    } 
-
     // if an error message exists, display errors with form
     if ($error_message != '') {
         include('index.php');
@@ -61,11 +34,11 @@
       // added else statement to continue script if no errors exist
     } else {
         // calculate the future value
-        $future_value = calc_future_value($investment, $years, $interest_rate);
+        $future_value = $futureValueObj->calculateFutureValue();
         // apply currency and percent formatting
-        $yearly_rate_f = percent_format($interest_rate);
-        $investment_f = currency_format($investment);
-        $future_value_f = currency_format($future_value);
+        $yearly_rate_f = $futureValueObj->formatPercent($interest_rate);
+        $investment_f = $futureValueObj->formatCurrency($investment);
+        $future_value_f = $futureValueObj->formatCurrency($future_value);
         // create extra $years variable, original is cleared from input
         $year_f = $years;
         // include the original form from index.php file

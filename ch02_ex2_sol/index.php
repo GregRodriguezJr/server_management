@@ -1,5 +1,5 @@
 <!--Greg Rodriguez-->
-<!--Lab Assignment 13-1-->
+<!--Lab Assignment 14-1B-->
 
 <?php
     //set default value of variables for initial page load
