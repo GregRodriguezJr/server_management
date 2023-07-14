@@ -23,9 +23,6 @@
 
     // validate values
     $error_message = $futureValueObj->validateValues();
-
-    // set default error message of empty string
-    $error_message = '';
     
     // if an error message exists, display errors with form
     if ($error_message != '') {
