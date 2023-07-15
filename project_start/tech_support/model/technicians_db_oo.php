@@ -28,5 +28,18 @@
             }
             return $technicians;
         }
+
+        // method to delete a technician
+        public function delete_technician($tech_ID) {
+            global $db;
+            $query = 
+                    'DELETE 
+                    FROM technicians 
+                    WHERE techID = :tech_ID';
+            $statement = $db->prepare($query);
+            $statement->bindValue(':tech_ID', $tech_ID);
+            $statement->execute();
+            $statement->closeCursor();
+        }
     }
 ?>

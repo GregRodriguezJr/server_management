@@ -1,6 +1,12 @@
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Technician List</h1>
+
+        <!-- diplay delete success message -->
+        <?php if(isset($delete_success)) : ?>
+            <p class="success"><?php echo $delete_success_message ?></p>
+        <?php endif; ?>
+        
         <!-- display all technicians -->
         <table>
             <tr>
