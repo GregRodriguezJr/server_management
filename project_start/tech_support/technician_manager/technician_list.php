@@ -12,10 +12,10 @@
             </tr>
             <?php foreach ($technicians as $technician) : ?>
                 <tr>
-                    <td><?php echo $technician['firstName'] ?></td>
-                    <td><?php echo $technician['email'] ?></td>
-                    <td><?php echo $technician['phone'] ?></td>
-                    <td><?php echo $technician['password'] ?></td>
+                    <td><?php echo $technician->getFullName(); ?></td>
+                    <td><?php echo $technician->email; ?></td>
+                    <td><?php echo $technician->phone; ?></td>
+                    <td><?php echo $technician->password; ?></td>
                     <td>
                         <!-- form for delete btn -->
                         <form action="index.php" method="post">
@@ -27,7 +27,7 @@
                             <input
                                 type="hidden"
                                 name="tech_ID"
-                                value="<?php echo $technician['techID'] ?>"
+                                value="<?php echo $technician->techID; ?>"
                             >
                             <input
                                 type="submit"
