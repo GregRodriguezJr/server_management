@@ -1,5 +1,6 @@
 <?php 
     require('../model/database_oo.php');
+    require('../model/technicians_db.php');
 
     $action = filter_input(INPUT_POST, 'action');
     if ($action === NULL) {
@@ -11,6 +12,7 @@
 
     switch ($action) {
         case 'show_technician_list':
+            $technicians = get_all_technicians();
             include('technician_list.php');
             break;
         
