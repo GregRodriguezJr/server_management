@@ -50,8 +50,6 @@
 </head>
 <body>
     <main>
-        <!--removed duplicate title-->
-
         <label>Investment Amount:</label>
         <span><?php echo htmlspecialchars($investment_f); ?></span><br />
 
