@@ -33,7 +33,7 @@
                             <input
                                 type="hidden"
                                 name="tech_ID"
-                                value="<?php echo $technician->techID; ?>"
+                                value="<?php echo $technician->tech_ID; ?>"
                             >
                             <input
                                 type="submit"
@@ -61,3 +61,9 @@
             }
         </script>'
 ?>
+<!-- JS alert to confirm the add product was complete -->
+<?php if(isset($_GET['add_success'])) : ?>
+    <script type="text/Javascript">
+        alert("Technician add was successful");
+    </script>
+<?php endif; ?>

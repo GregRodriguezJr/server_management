@@ -38,6 +38,37 @@
 
         // action to add technician to db
         case 'add_technician':
+            $first_name = filter_input(INPUT_POST, 'first_name');
+            $last_name = filter_input(INPUT_POST, 'last_name');
+            $email = filter_input(INPUT_POST, 'email');
+            $phone = filter_input(INPUT_POST, 'phone');
+            $password = filter_input(INPUT_POST, 'password');
+            $tech_ID = null;
+
+            // set default success variable
+            $add_success = false;
+
+            // Instantiate the Technician object
+            $newTechnician = new Technician($first_name, $last_name, $tech_ID, $email, $phone, $password);
+
+            // method to check for errors
+            $error = $newTechnician->validateInput();
+
+            // display error page
+            if(!empty($error)) {
+                include('../errors/error.php');
+            } else {
+                $TechnicianDB->add_technician(
+                    $newTechnician->first_name, 
+                    $newTechnician->last_name, 
+                    $newTechnician->email, 
+                    $newTechnician->phone, 
+                    $newTechnician->password
+                );            
+                $add_success = true;
+                header("Location: .?action=show_technician_list&add_success=true");
+                exit;
+            }
             break;
 
         default:

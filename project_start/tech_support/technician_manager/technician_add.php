@@ -54,6 +54,6 @@
             />
             <br>
         </form>
-        <p><a href="?action=show_technician_list">View Product List</a></p>
+        <p><a href="?action=show_technician_list">View Technician List</a></p>
     </main>
 <?php include '../view/footer.php'; ?>
