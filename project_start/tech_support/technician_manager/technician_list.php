@@ -45,7 +45,7 @@
                 </tr>
             <?php endforeach; ?>
         </table>
-        <p><a href="index.php?action=#">Add Technician</a></p>
+        <p><a href="index.php?action=show_add_tech_form">Add Technician</a></p>
     </main>
 <?php include '../view/footer.php'; ?>
 <!-- JS alert to confirm delete btn submission -->

@@ -30,6 +30,16 @@
             $delete_success_message = "Technician successfully deleted!";
             include('technician_list.php');
             break;
+
+        // action shows add form
+        case 'show_add_tech_form':
+            include('technician_add.php');
+            break;
+
+        // action to add technician to db
+        case 'add_technician':
+            break;
+
         default:
             include('../errors/error.php');
             break;
