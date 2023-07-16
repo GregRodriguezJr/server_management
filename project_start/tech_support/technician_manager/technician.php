@@ -21,8 +21,22 @@
         }
 
         public function validateInput() {
+            $error_message = '';
+
+            if(!preg_match('/^\d{3}-\d{3}-\d{4}$/', $this->phone)) {
+                $error_message .= "Invalid phone format, must be 555-555-5555. <br>";
+            }
+            if(!ctype_alpha($this->first_name)) {
+                $error_message .= "First name must be letter characters. <br>";
+            }
+            if(!ctype_alpha($this->last_name)) {
+                $error_message .= "Last name must be letter characters. <br>";
+            }
+            if (!preg_match('/\.com$/', $this->email)) {
+                $error_message .= "Invalid email format, must end with '.com'. <br>";
+            }
             
-            return '';
+            return $error_message;
         }
     }
 ?>

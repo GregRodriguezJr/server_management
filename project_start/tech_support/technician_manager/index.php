@@ -43,6 +43,8 @@
             $email = filter_input(INPUT_POST, 'email');
             $phone = filter_input(INPUT_POST, 'phone');
             $password = filter_input(INPUT_POST, 'password');
+            // constructor for Technician class expects an ID, can not overload constructor
+            // used null as placeholder since db will assign new ID
             $tech_ID = null;
 
             // set default success variable
