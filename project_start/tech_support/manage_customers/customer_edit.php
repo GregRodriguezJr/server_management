@@ -35,14 +35,28 @@
                 name="first_name"
                 value="<?php echo $customer['firstName']?>"
                 required
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['firstNameErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;">
+                    <?php echo $error_messages['firstNameErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label>Last Name:</label>
             <input 
                 type="text" 
                 name="last_name"
                 value="<?php echo $customer['lastName']?>"
                 required
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['lastNameErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;">
+                    <?php echo $error_messages['lastNameErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label>Address:</label>
             <input 
                 type="text" 
@@ -50,28 +64,56 @@
                 value="<?php echo $customer['address']?>"
                 required
                 class="wide-input"
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['addressErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;">
+                    <?php echo $error_messages['addressErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label>City:</label>
             <input 
                 type="text" 
                 name="city"
                 value="<?php echo $customer['city']?>"
                 required
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['cityErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;">
+                    <?php echo $error_messages['cityErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label>State:</label>
             <input 
                 type="text" 
                 name="state"
                 value="<?php echo $customer['state']?>"
                 required
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['stateErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;">
+                    <?php echo $error_messages['stateErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label>Postal Code:</label>
             <input 
                 type="text" 
                 name="postal_code"
                 value="<?php echo $customer['postalCode']?>"
                 required
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['postalCodeErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;">
+                    <?php echo $error_messages['postalCodeErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label>Country Code:</label>
             <!-- added select element to loop through options and display all country codes -->
             <select 
@@ -99,8 +141,14 @@
                 type="tel" 
                 name="phone"
                 value="<?php echo $customer['phone']?>"
-                required
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['phoneErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;"> 
+                    <?php echo $error_messages['phoneErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label>Email:</label>
             <input 
                 type="email" 
@@ -108,14 +156,28 @@
                 value="<?php echo $customer['email']?>"
                 required
                 class="wide-input"
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['emailErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;">
+                    <?php echo $error_messages['emailErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label>Password:</label>
             <input 
                 type="password" 
                 name="password"
                 value="<?php echo $customer['password']?>"
                 required
-            ><br>
+            >
+            <!-- add custom validation error -->
+            <?php if(isset($error_messages['passwordErr'])) : ?>
+                <p class="error" style="float: left; margin: .15em 1em;">
+                    <?php echo $error_messages['passwordErr'] ?>
+                </p>
+            <?php endif; ?>
+            <br>
             <label></label>
             <input 
                 type="submit"

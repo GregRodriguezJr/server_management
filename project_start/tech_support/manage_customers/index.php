@@ -56,17 +56,53 @@
             $phone = filter_input(INPUT_POST, 'phone');
             $email = filter_input(INPUT_POST, 'email');
             $password = filter_input(INPUT_POST, 'password');
-            // Validate inputs
-            if (
-                // check if new imputs are strings and no special chars
-                !is_string($first_name) || !preg_match('/^[a-zA-Z\s]+$/', $first_name) ||
-                !is_string($last_name) || !preg_match('/^[a-zA-Z\s]+$/', $last_name) ||
-                !is_string($city) || !preg_match('/^[a-zA-Z\s]+$/', $city) ||
-                !is_string($state) || !preg_match('/^[a-zA-Z\s]+$/', $state)
-                ) {
-                $success = false;
-                $error = "Invalid customer data. Check all fields and try again.";
-                include('../errors/error.php');
+            // default success message
+            $success = false;
+            // array to store error messages
+            $error_messages = [];
+
+            // Validate first name
+            if (!is_string($first_name) || !preg_match('/^[a-zA-Z\s]+$/', $first_name) || strlen($first_name) > 51){
+                $error_messages['firstNameErr'] = "Invalid input.";
+            } 
+            // Validate last name
+            if (!is_string($last_name) || !preg_match('/^[a-zA-Z\s]+$/', $last_name) || strlen($last_name) > 51) {
+                $error_messages['lastNameErr'] = "Invalid input.";
+            }
+            // validate address
+            if(strlen($address) > 51) {
+                $error_messages['addressErr'] = "Invalid input.";
+            }        
+            // Validate city
+            if (!is_string($city) || !preg_match('/^[a-zA-Z\s]+$/', $city) || strlen($city) > 51) {
+                $error_messages['cityErr'] = "Invalid input.";
+            }
+            // Validate state
+            if (!is_string($state) || !preg_match('/^[a-zA-Z\s]+$/', $state) || strlen($state) > 51) {
+                $error_messages['stateErr'] = "Invalid input.";
+            }
+            // Validate postal code
+            if (!is_numeric($postal_code) || strlen(strval($postal_code)) > 21) {
+                $error_messages['postalCodeErr'] = "Invalid input.";
+            }
+            // validate phone
+            if (!preg_match('/^\(\d{3}\) \d{3}-\d{4}$/', $phone)) {
+                $error_messages['phoneErr'] = "Use (999) 999-9999 format";
+            }
+            // validate email
+            if(!preg_match('/\.com$/', $email)) {
+                $error_messages['emailErr'] = "Invalid email address";
+            }       
+            // validate password
+            if(strlen($password) < 6 || strlen($password) > 21) {
+                $error_messages['passwordErr'] = "minimum 6 characters, max 21";
+            }
+        
+            if (!empty($error_messages)) {
+                $customer = get_customer($customer_id);
+                $countries = get_all_countries();
+                include('customer_edit.php');
+                exit;
             } else {
                 try {
                     // call update function to update database

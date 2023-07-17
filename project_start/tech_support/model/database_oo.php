@@ -1,3 +1,5 @@
+<!-- Greg Rodriguez -->
+<!-- Ch14 Project -->
 <?php 
     class Database {
         private $db;
