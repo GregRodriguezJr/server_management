@@ -1,5 +1,5 @@
 <!-- Greg Rodriguez -->
-<!-- Project 8 -->
+<!-- Project 15 -->
 <?php
     require('../model/database.php');
     require('../model/customer_db.php');

@@ -1,5 +1,5 @@
 <!-- Greg Rodriguez -->
-<!-- Project -->
+<!-- Project 15 -->
 <?php include '../view/header.php'; ?>
     <main>
         <h1>View/Update Customer</h1>
