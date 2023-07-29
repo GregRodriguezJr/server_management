@@ -4,8 +4,9 @@
 <!-- the head section -->
 <head>
     <title>SportsPro Technical Support</title>
+    <!-- updated path for local environment -->
     <link rel="stylesheet" type="text/css"
-          href="/project_solutions/ch15_tech_support/main.css">
+          href="/server_management/ch15_tech_support/main.css">
 </head>
 
 <!-- the body section -->
@@ -15,7 +16,8 @@
     <p>Sports management software for the sports enthusiast</p>
     <nav>
         <ul>
-            <li><a href="/project_solutions/ch15_tech_support/">Home</a></li>
+            <!-- updated path for local environment -->
+            <li><a href="/server_management/ch15_tech_support/">Home</a></li>
         </ul>
     </nav>
 </header>
