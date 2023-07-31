@@ -5,7 +5,7 @@ class TechnicianDB {
         $db = Database::getDB();
 
         try {
-            $query = 'SELECT * FROM technician
+            $query = 'SELECT * FROM technicians
                       ORDER BY lastName';
             $statement = $db->prepare($query);
             $statement->execute();
