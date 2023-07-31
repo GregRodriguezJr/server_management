@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 
+// Greg Rodriguez
+// Project 19
+
 function get_products() {
     global $db;
     try {
