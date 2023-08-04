@@ -1,3 +1,6 @@
+<!-- Greg Rodriguez -->
+<!-- Ch. 20 Project -->
+
 <?php
 require('../model/database.php');
 require('../model/customer_db.php');
@@ -97,6 +100,61 @@ switch ($action) {
                     $address, $city, $state, $postal_code, $country_code,
                     $phone, $email, $password);
             header("Location: .");
+        }
+        break;
+
+    // display customer add page
+    case 'display_customer_add':
+        // display add new customer
+        $customerAdd = true;
+        $first_name = '';
+        $last_name = '';
+        $address = '';
+        $city = '';
+        $state = '';
+        $postal_code = '';
+        $phone = '';
+        $email = '';
+        $password = '';
+        $countries = get_countries();
+        include('customer_display.php');
+        break;
+
+    case 'customer_add':
+        // add customer
+        // Get data from POST request
+        $customer_id = filter_input(INPUT_POST, 'customer_id', FILTER_VALIDATE_INT);
+        $first_name = filter_input(INPUT_POST, 'first_name');
+        $last_name = filter_input(INPUT_POST, 'last_name');
+        $address = filter_input(INPUT_POST, 'address');
+        $city = filter_input(INPUT_POST, 'city');
+        $state = filter_input(INPUT_POST, 'state');
+        $postal_code = filter_input(INPUT_POST, 'postal_code');
+        $country_code = filter_input(INPUT_POST, 'country_code');
+        $phone = filter_input(INPUT_POST, 'phone');
+        $email = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+
+        // Validate form data
+        $validate->text('first_name', $first_name, min:1, max:50);
+        $validate->text('last_name', $last_name, min:1, max:50);
+        $validate->text('address', $address, min:1, max:50);
+        $validate->text('city', $city, min:1, max:50);
+        $validate->text('state', $state, min:1, max:50);
+        $validate->text('postal_code', $postal_code, min:1, max:20);
+        $validate->phone('phone', $phone);
+        $validate->email('email', $email);
+        $validate->text('password', $password, min:6, max:20);
+
+        // Forward or redirect to appropriate view based on hasErrors
+        if ($fields->hasErrors()) {
+            $countries = get_countries();  // needed for country drop-down
+            include('customer_display.php');
+        } else {
+            add_customer($first_name, $last_name,
+                    $address, $city, $state, $postal_code, $country_code,
+                    $phone, $email, $password);
+            header("Location: .?action=search_customers");
         }
         break;
 }

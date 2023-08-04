@@ -1,3 +1,6 @@
+<!-- Greg Rodriguez -->
+<!-- Ch. 20 Project -->
+
 <?php include '../view/header.php'; ?>
 <main>
 
@@ -40,6 +43,13 @@
             <?php endforeach; ?>
         </table>
     <?php endif; ?>
+    
+    <!-- Add customer button to display customer add page -->
+    <h2>Add a new customer</h2>
+    <form action="." method="post">
+        <input type="hidden" name="action" value="display_customer_add">
+        <input type="submit" value="Add Customer">
+    </form>
 
 </main>
 <?php include '../view/footer.php'; ?>

@@ -1,10 +1,19 @@
+<!-- Greg Rodriguez -->
+<!-- Ch. 20 Project -->
+
 <?php include '../view/header.php'; ?>
 <main>
 
     <!-- display a table of customer information -->
-    <h2>View/Update Customer</h2>
+    <h2>Add/Update Customer</h2>
     <form action="." method="post" id="aligned">
-        <input type="hidden" name="action" value="update_customer">
+        <!-- ternary operator to set the value -->
+        <input 
+            type="hidden" 
+            name="action" 
+            value="<?php echo isset($customerAdd) 
+            ? 'customer_add' : 'update_customer'; ?>"
+        >
         <input type="hidden" name="customer_id" 
                value="<?php echo htmlspecialchars($customer_id); ?>">
 
@@ -46,17 +55,14 @@
 
         <label>Country:</label>
         <select name="country_code">
-            <?php foreach ($countries as $country) : 
-                if ($country_code == $country['countryCode']) {
-                    $selected = 'selected';
-                } else {
-                    $selected = '';
-                }
-            ?>
-            <option value="<?php echo htmlspecialchars($country['countryCode']); ?>" 
-                <?php echo $selected; ?>>
-                <?php echo htmlspecialchars($country['countryName']); ?>
-            </option>
+            <?php 
+                $defaultCountry = isset($customerAdd) ? 'US' : $country_code;
+                foreach ($countries as $country) : 
+                    $selected = ($country['countryCode'] === $defaultCountry) ? 'selected' : '';?>
+                    <option value="<?php echo htmlspecialchars($country['countryCode']); ?>" 
+                        <?php echo $selected; ?>>
+                        <?php echo htmlspecialchars($country['countryName']); ?>
+                    </option>
             <?php endforeach; ?>
         </select>
         <br>
@@ -80,7 +86,12 @@
         <br>
 
         <label>&nbsp;</label>
-        <input type="submit" value="Update Customer">
+        <!-- ternary operator used to determine the value -->
+        <input 
+              type="submit" 
+              value="<?php echo isset($customerAdd) 
+              ? 'Add Customer' : 'Update Customer'; ?>"
+        >
         <br>
     </form>
     <p><a href="">Search Customers</a></p>

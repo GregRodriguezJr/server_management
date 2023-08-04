@@ -125,6 +125,7 @@ function add_customer($first_name, $last_name,
     } catch (PDOException $e) {
         $error = "Database Error: " . $e->getMessage();
         include('../errors/error.php');
+        var_dump($country_code);
         exit();
     }
 }
