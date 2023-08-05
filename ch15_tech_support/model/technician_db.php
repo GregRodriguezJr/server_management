@@ -1,8 +1,6 @@
+<!-- Greg Rodriguez -->
+<!-- Ch. 20 Project -->
 <?php
-
-// Greg Rodriguez
-// Project 19
-
 function get_technicians() {
     global $db;
     try {
@@ -13,6 +11,26 @@ function get_technicians() {
         $technicians = $statement->fetchAll();
         $statement->closeCursor();   
         return $technicians;
+    } catch (PDOException $e) {
+        $error = "Database Error: " . $e->getMessage();
+        include('../errors/error.php');
+        exit();
+    }
+}
+
+// get tech by email for login
+function get_technician_by_email($email) {
+    global $db;
+    try {
+        $query = 'SELECT * 
+                FROM technicians
+                WHERE email = :email';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+        $technician = $statement->fetch();
+        $statement->closeCursor();   
+        return $technician;
     } catch (PDOException $e) {
         $error = "Database Error: " . $e->getMessage();
         include('../errors/error.php');

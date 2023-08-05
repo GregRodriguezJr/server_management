@@ -1,7 +1,7 @@
-<?php
+<!-- Greg Rodriguez -->
+<!-- Ch. 20 Project -->
 
-// Greg Rodriguez
-// Project 19
+<?php
 
 function add_incident($customer_id, $product_code, $title, $description) {
     global $db;
@@ -27,4 +27,24 @@ function add_incident($customer_id, $product_code, $title, $description) {
         exit();
     }
 }
+
+function get_incidents_by_techID($techID) {
+    global $db;
+    try {
+        $query = 'SELECT * 
+                FROM incidents 
+                WHERE techID = :techID';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':techID', $techID);
+        $statement->execute();
+        $incidents = $statement->fetchAll();
+        $statement->closeCursor();
+        return $incidents;
+    } catch (PDOException $e) {
+        $error = "Database Error: " . $e->getMessage();
+        include('../errors/error.php');
+        exit();
+    }
+}
+
 ?>
