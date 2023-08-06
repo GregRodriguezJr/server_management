@@ -5,6 +5,7 @@
 require('../model/database.php');
 require('../model/incident_db.php');
 require('../model/technician_db.php');
+require('../model/customer_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -32,9 +33,16 @@ switch ($action) {
             include('technician_login.php');
         } else {
             // get all incidents for tech
+            $techEmail = $email;
             $incidents = get_incidents_by_techID($technician['techID']);
             include('technician_incident.php');
         }
+        break;
+
+    case 'show_incident_display':
+        $incidentID = filter_input(INPUT_POST, 'incident_ID');
+        $incident = get_incident_by_ID($incidentID);
+        include('incident_display');
         break;
     }
 ?>

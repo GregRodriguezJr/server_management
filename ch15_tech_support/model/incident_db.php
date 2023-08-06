@@ -31,8 +31,9 @@ function add_incident($customer_id, $product_code, $title, $description) {
 function get_incidents_by_techID($techID) {
     global $db;
     try {
-        $query = 'SELECT * 
+        $query = 'SELECT incidents.*, customers.firstName, customers.lastName 
                 FROM incidents 
+                INNER JOIN customers ON incidents.customerID = customers.customerID
                 WHERE techID = :techID';
         $statement = $db->prepare($query);
         $statement->bindValue(':techID', $techID);
@@ -46,5 +47,7 @@ function get_incidents_by_techID($techID) {
         exit();
     }
 }
+
+
 
 ?>
