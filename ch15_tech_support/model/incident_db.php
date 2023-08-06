@@ -34,7 +34,7 @@ function get_incidents_by_techID($techID) {
         $query = 'SELECT incidents.*, customers.firstName, customers.lastName 
                 FROM incidents 
                 INNER JOIN customers ON incidents.customerID = customers.customerID
-                WHERE techID = :techID';
+                WHERE techID = :techID AND dateClosed IS NULL';
         $statement = $db->prepare($query);
         $statement->bindValue(':techID', $techID);
         $statement->execute();
@@ -61,6 +61,32 @@ function get_incident_by_ID($incidentID) {
         $incident = $statement->fetch();
         $statement->closeCursor();
         return $incident;
+    } catch (PDOException $e) {
+        $error = "Database Error: " . $e->getMessage();
+        include('../errors/error.php');
+        exit();
+    }
+}
+
+function update_incident($incidentID, $productCode, $dateOpened, $dateClosed, $title, $description) {
+    global $db;
+    try {
+        $query = 'UPDATE incidents 
+                SET dateClosed = :dateClosed, 
+                title = :title, 
+                description = :description, 
+                productCode = :productCode, 
+                dateOpened = :dateOpened 
+                WHERE incidentID = :incidentID';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':dateClosed', $dateClosed);
+        $statement->bindValue(':title', $title);
+        $statement->bindValue(':description', $description);
+        $statement->bindValue(':productCode', $productCode);
+        $statement->bindValue(':dateOpened', $dateOpened);
+        $statement->bindValue(':incidentID', $incidentID);
+        $statement->execute();
+        $statement->closeCursor();
     } catch (PDOException $e) {
         $error = "Database Error: " . $e->getMessage();
         include('../errors/error.php');
