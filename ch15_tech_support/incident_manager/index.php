@@ -42,7 +42,7 @@ switch ($action) {
     case 'show_incident_display':
         $incidentID = filter_input(INPUT_POST, 'incident_ID');
         $incident = get_incident_by_ID($incidentID);
-        include('incident_display');
+        include('incident_display.php');
         break;
     }
 ?>

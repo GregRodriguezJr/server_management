@@ -48,6 +48,24 @@ function get_incidents_by_techID($techID) {
     }
 }
 
-
+function get_incident_by_ID($incidentID) {
+    global $db;
+    try {
+        $query = 'SELECT incidents.*, technicians.email
+                FROM incidents 
+                INNER JOIN technicians ON incidents.techID = technicians.techID
+                WHERE incidentID = :incidentID';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':incidentID', $incidentID);
+        $statement->execute();
+        $incident = $statement->fetch();
+        $statement->closeCursor();
+        return $incident;
+    } catch (PDOException $e) {
+        $error = "Database Error: " . $e->getMessage();
+        include('../errors/error.php');
+        exit();
+    }
+}
 
 ?>
