@@ -1,4 +1,5 @@
 <?php
+require_once "../util/secure_conn.php";
 require('../model/database.php');
 require('../model/technician_db.php');
 

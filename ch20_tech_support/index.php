@@ -1,6 +1,6 @@
 <?php include 'view/header.php'; ?>
 <main>
-    <nav>    
+    <!-- <nav>    
     <h2>Administrators</h2>
     <ul>
         <li><a href="product_manager">Manage Products</a></li>
@@ -20,6 +20,14 @@
     <ul>
         <li><a href="product_register">Register Product</a></li>
     </ul>
+    </nav> -->
+    <nav>
+        <h1>Main Menu</h1>
+        <ul>
+            <li><a href="product_manager">Administrators</a></li>
+            <li><a href="technician_manager">Technicians</a></li>
+            <li><a href="product_register">Customers</a></li>
+        </ul>
     </nav>
 </main>
 <?php include 'view/footer.php'; ?>

@@ -1,4 +1,5 @@
 <?php
+require_once "../util/secure_conn.php";
 require('../model/database.php');
 require('../model/customer_db.php');
 require('../model/country_db.php');

@@ -1,4 +1,5 @@
 <?php
+require_once "../util/secure_conn.php";
 require('../model/database.php');
 require('../model/customer_db.php');
 require('../model/product_db.php');
@@ -34,6 +35,8 @@ switch ($action) {
             $customer = $_SESSION['customer'];  
         } else { // If customer is not in session, get it from database and set it in session
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+            $password = filter_input(INPUT_POST, 'password');
+
             if (empty($email) || $email === FALSE) {
                 $error = "Invalid email. Please try again.";
                 include('../errors/error.php');
@@ -43,6 +46,11 @@ switch ($action) {
             $customer = get_customer_by_email($email);
             if ($customer === NULL) {
                 $error = "Customer doesn't exist. Please try again.";
+                include('../errors/error.php');
+                exit();
+                // verify the password is correct
+            } else if ($customer['password'] != $password) {
+                $error = "Invalid password. Please try again.";
                 include('../errors/error.php');
                 exit();
             }
