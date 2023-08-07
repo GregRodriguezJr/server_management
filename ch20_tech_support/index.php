@@ -25,7 +25,7 @@
         <h1>Main Menu</h1>
         <ul>
             <li><a href="product_manager">Administrators</a></li>
-            <li><a href="technician_manager">Technicians</a></li>
+            <li><a href="incident_update">Technicians</a></li>
             <li><a href="product_register">Customers</a></li>
         </ul>
     </nav>

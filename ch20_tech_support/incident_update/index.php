@@ -35,6 +35,8 @@ switch ($action) {
             $technician = $_SESSION['technician'];  
         } else { // If technician is not in session, get it from database and set it in session
             $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+            $password = filter_input(INPUT_POST, 'password');
+
             if (empty($email) || $email === FALSE) {
                 $error = "Invalid email. Please try again.";
                 include('../errors/error.php');
@@ -44,6 +46,10 @@ switch ($action) {
             $technician = get_technician_by_email($email);
             if ($technician === NULL) {
                 $error = "Technician doesn't exist. Please try again.";
+                include('../errors/error.php');
+                exit();
+            } else if ($technician['password'] != $password) {
+                $error = "Invalid password. Please try again.";
                 include('../errors/error.php');
                 exit();
             }
