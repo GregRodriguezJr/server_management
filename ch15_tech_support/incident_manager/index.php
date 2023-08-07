@@ -27,9 +27,10 @@ switch ($action) {
         break; 
 
     case 'login':
+        session_start();
         $email = filter_input(INPUT_POST, 'email');
         if($email === NULL) {
-            $email = filter_input(INPUT_GET, 'email', FILTER_SANITIZE_EMAIL);
+            $email = $_SESSION['email'];
             $techEmail = $email;
             $technician = get_technician_by_email($email);
             $incidents = get_incidents_by_techID($technician['techID']);
@@ -46,6 +47,7 @@ switch ($action) {
                 include('technician_login.php');
             } else {
                 // start session
+                session_start();
                 $_SESSION['email'] = $email;
                 // get all incidents for tech
                 $techEmail = $email;
@@ -55,10 +57,11 @@ switch ($action) {
         }
         break;
 
-    case 'show_incident_display':
+    case 'show_incident_update':
+        session_start();
         $incidentID = filter_input(INPUT_POST, 'incident_ID');
         $incident = get_incident_by_ID($incidentID);
-        include('incident_display.php');
+        include('incident_update.php');
         break;
 
     case 'update_incident':
@@ -98,10 +101,14 @@ switch ($action) {
             include('../errors/error.php');
         } else {
             update_incident($incidentID, $productCode, $dateOpened, $dateClosed, $title, $description);
-            header("Location: .?action=login&email=$email");
+            header("Location: .?action=show_success_page");
             exit;
         }
         
         break;
+
+        case 'show_success_page':
+            session_start();
+            include('success_page.php');
     }
 ?>

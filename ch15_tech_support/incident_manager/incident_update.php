@@ -33,7 +33,6 @@
             <textarea name="description" rows="6" cols="50"><?php echo $incident['description'] ?></textarea>
             <br>
             <input type="hidden" name="action" value="update_incident">
-            <input type="hidden" name="email" value="<?php echo $incident['email'] ?>">
             <input type="submit" value="Update Incident">
         </form>
 

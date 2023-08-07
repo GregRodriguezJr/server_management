@@ -53,7 +53,7 @@
                                 <input
                                     type="hidden"
                                     name="action"
-                                    value="show_incident_display"
+                                    value="show_incident_update"
                                 >
                                 <input
                                     type="hidden"
