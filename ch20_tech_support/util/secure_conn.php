@@ -1,3 +1,6 @@
+<!-- Greg Rodriguez -->
+<!-- Ch. 21 Project -->
+
 <?php
 $https = filter_input(INPUT_SERVER, 'HTTPS');
 if (!$https) {
