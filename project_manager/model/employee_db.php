@@ -1,5 +1,5 @@
 <?php
-function get_employees() {
+function get_all_employees() {
     global $db;
     $query = 'SELECT * FROM employee
               ORDER BY lastName';
@@ -31,7 +31,7 @@ function get_employee_by_last_name($last_name) {
     }
 }
 
-function get_employee($employee_id) {
+function get_employee_by_ID($employee_id) {
     global $db;
     $query = 'SELECT * FROM employee
               WHERE employeeget_employeeID = :employeeget_employee_id';

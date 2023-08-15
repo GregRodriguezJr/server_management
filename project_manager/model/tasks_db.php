@@ -14,17 +14,13 @@ function get_products() {
     }
 }
 
-function get_products_by_customer($email) {
+function get_tasks_by_employee($employee_ID) {
     global $db;
-    $query = 'SELECT products.productCode, products.name
-              FROM products
-                INNER JOIN registrations ON products.productCode = registrations.productCode
-                INNER JOIN customers ON registrations.customerID = customers.customerID
-              WHERE customers.email = :email';
+    $query = 'SELECT * FROM tasks WHERE employeeID = :employee_ID';
 
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':email', $email);
+        $statement->bindValue(':employee_ID', $employee_ID);
         $statement->execute();
         $result = $statement->fetchAll();
         $statement->closeCursor();
