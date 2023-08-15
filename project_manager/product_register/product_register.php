@@ -28,7 +28,7 @@
             <input type="submit" value="Register Product">
         </form>
     <?php endif; ?>
-    <p>You are logged in as <?php echo htmlspecialchars($customer['email']); ?></p>
+    <p>You are logged in as <?php echo htmlspecialchars($developer['email']); ?></p>
     <form action="" method="post">
         <input type="hidden" name="action" value="logout">
         <input type="submit" value="Logout">

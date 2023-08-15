@@ -1,7 +1,7 @@
 <?php
-function get_customers() {
+function get_employees() {
     global $db;
-    $query = 'SELECT * FROM customers
+    $query = 'SELECT * FROM employee
               ORDER BY lastName';
     try {
         $statement = $db->prepare($query);
@@ -14,9 +14,9 @@ function get_customers() {
     }
 }
 
-function get_customers_by_last_name($last_name) {
+function get_employee_by_last_name($last_name) {
     global $db;
-    $query = 'SELECT * FROM customers
+    $query = 'SELECT * FROM employee
               WHERE lastName = :last_name
               ORDER BY lastName';
     try {
@@ -31,13 +31,13 @@ function get_customers_by_last_name($last_name) {
     }
 }
 
-function get_customer($customer_id) {
+function get_employee($employee_id) {
     global $db;
-    $query = 'SELECT * FROM customers
-              WHERE customerID = :customer_id';
+    $query = 'SELECT * FROM employee
+              WHERE employeeget_employeeID = :employeeget_employee_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':customer_id', $customer_id);
+        $statement->bindValue(':employee_id', $employee_id);
         $statement->execute();
         $result = $statement->fetch();
         $statement->closeCursor();
@@ -47,9 +47,9 @@ function get_customer($customer_id) {
     }
 }
 
-function get_customer_by_email($email) {
+function get_employee_by_email($email) {
     global $db;
-    $query = 'SELECT * FROM customers
+    $query = 'SELECT * FROM employee
               WHERE email = :email';
     try {
         $statement = $db->prepare($query);
@@ -58,7 +58,7 @@ function get_customer_by_email($email) {
         $result = $statement->fetch();
         $statement->closeCursor();
         
-        if ($result === FALSE) { // no customer with this email in database
+        if ($result === FALSE) { // no employee with this email in database
             return NULL;
         } else {
             return $result;
@@ -68,13 +68,13 @@ function get_customer_by_email($email) {
     }
 }
 
-function delete_customer($customer_id) {
+function delete_employee($employee_id) {
     global $db;
-    $query = 'DELETE FROM customers
-              WHERE customerID = :customer_id';
+    $query = 'DELETE FROM employee
+              WHERE employeeID = :employee_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':customer_id', $customer_id);
+        $statement->bindValue(':employee_id', $employee_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
         return $row_count;
@@ -83,11 +83,11 @@ function delete_customer($customer_id) {
     }
 }
 
-function add_customer($first_name, $last_name, 
+function add_employee($first_name, $last_name, 
         $address, $city, $state, $postal_code, $country_code,
         $phone, $email, $password) {
     global $db;
-    $query = 'INSERT INTO customers
+    $query = 'INSERT INTO employee
                  (firstName, lastName,
                   address, city, state, postalCode, countryCode,
                   phone, email, password)
@@ -118,11 +118,11 @@ function add_customer($first_name, $last_name,
     }
 }
 
-function update_customer($customer_id, $first_name, $last_name,
+function update_employee($employee_id, $first_name, $last_name,
         $address, $city, $state, $postal_code, $country_code,
         $phone, $email, $password) {
     global $db;
-    $query = 'UPDATE customers
+    $query = 'UPDATE employee
               SET firstName = :first_name,
                   lastName = :last_name,
                   address = :address,
@@ -133,7 +133,7 @@ function update_customer($customer_id, $first_name, $last_name,
                   phone = :phone,
                   email = :email,
                   password = :password
-              WHERE customerID = :customer_id';
+              WHERE employeeID = :employee_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':first_name', $first_name);
@@ -146,7 +146,7 @@ function update_customer($customer_id, $first_name, $last_name,
         $statement->bindValue(':phone', $phone);
         $statement->bindValue(':email', $email);
         $statement->bindValue(':password', $password);
-        $statement->bindValue(':customer_id', $customer_id);
+        $statement->bindValue(':employee_id', $employee_id);
         $statement->execute();
         $row_count = $statement->rowCount();
         $statement->closeCursor();

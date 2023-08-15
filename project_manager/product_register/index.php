@@ -1,6 +1,3 @@
-<!-- Greg Rodriguez -->
-<!-- Ch. 21 Project -->
-
 <?php
 require_once "../util/secure_conn.php";
 require('../model/database.php');

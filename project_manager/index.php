@@ -4,8 +4,8 @@
         <h1>Main Menu</h1>
         <ul>
             <li><a href="admin_manager">Administrators</a></li>
-            <li><a href="incident_update">Technicians</a></li>
-            <li><a href="product_register">Customers</a></li>
+            <li><a href="#">Project Managers</a></li>
+            <li><a href="developer">Developers</a></li>
         </ul>
     </nav>
 </main>
