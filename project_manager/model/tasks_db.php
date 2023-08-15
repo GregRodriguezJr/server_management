@@ -1,7 +1,7 @@
 <?php
-function get_products() {
+function get_all_tasks() {
     global $db;
-    $query = 'SELECT * FROM products
+    $query = 'SELECT * FROM tasks
               ORDER BY name';
     try {
         $statement = $db->prepare($query);
@@ -16,7 +16,10 @@ function get_products() {
 
 function get_tasks_by_employee($employee_ID) {
     global $db;
-    $query = 'SELECT * FROM tasks WHERE employeeID = :employee_ID';
+    $query = 
+            'SELECT * 
+            FROM tasks 
+            WHERE employeeID = :employee_ID';
 
     try {
         $statement = $db->prepare($query);
@@ -30,13 +33,15 @@ function get_tasks_by_employee($employee_ID) {
     }
 }
 
-function get_product($product_code) {
+function get_task_by_ID($task_ID) {
     global $db;
-    $query = 'SELECT * FROM products
-              WHERE productCode = :product_code';
+    $query = 
+            'SELECT * 
+            FROM tasks
+            WHERE taskID = :task_ID';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':product_code', $product_code);
+        $statement->bindValue(':task_ID', $task_ID);
         $statement->execute();
         $result = $statement->fetch();
         $statement->closeCursor();
@@ -46,63 +51,34 @@ function get_product($product_code) {
     }
 }
 
-function delete_product($product_code) {
+function delete_task($task_ID) {
     global $db;
-    $query = 'DELETE FROM products
-              WHERE productCode = :product_code';
+    $query = 'DELETE FROM tasks
+              WHERE taskID = :task_ID';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':product_code', $product_code);
+        $statement->bindValue(':task_ID', $task_ID);
         $statement->execute();
         $row_count = $statement->rowCount();
         $statement->closeCursor();
-        return $row_count;
     } catch (PDOException $e) {
         display_db_error($e->getMessage());
     }
 }
 
-function add_product($code, $name, $version, $release_date) {
+function update_task($task_ID, $status, $hours) {
     global $db;
-    $query = 'INSERT INTO products
-                 (productCode, name, version, releaseDate)
-              VALUES
-                 (:code, :name, :version, :release_date)';
-
+    $query = 'UPDATE tasks
+              SET status = :status,
+                  hours = :hours
+              WHERE taskID = :task_ID';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':code', $code);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':version', $version);
-        $statement->bindValue(':release_date', $release_date);
+        $statement->bindValue(':task_ID', $task_ID);
+        $statement->bindValue(':status', $status);
+        $statement->bindValue(':hours', $hours);
         $statement->execute();
         $statement->closeCursor();
-
-        // Get the last product ID that was automatically generated
-        $id = $db->lastInsertId();
-        return $id;
-    } catch (PDOException $e) {
-        display_db_error($e->getMessage());
-    }
-}
-
-function update_product($code, $name, $version, $release_date) {
-    global $db;
-    $query = 'UPDATE products
-              SET name = :name,
-                  version = :version,
-                  releaseDate = :release_date
-              WHERE productCode = :product_code';
-    try {
-        $statement = $db->prepare($query);
-        $statement->bindValue(':code', $code);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':version', $version);
-        $statement->bindValue(':release_date', $release_date);
-        $statement->execute();
-        $row_count = $statement->rowCount();
-        $statement->closeCursor();
-        return $row_count;
     } catch (PDOException $e) {
         display_db_error($e->getMessage());
     }

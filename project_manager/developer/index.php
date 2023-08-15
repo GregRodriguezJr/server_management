@@ -18,8 +18,6 @@ if ($action === NULL) {
         }
     }
 }
-//instantiate variable(s)
-$email = '';
 
 switch ($action) {
     case 'display_login':
@@ -61,25 +59,29 @@ switch ($action) {
         include('developer_tasks.php');
         break;
 
-    case 'register_product':
+    case 'edit_task_form':
         $employee = $_SESSION['employee'];
-        $product_code = filter_input(INPUT_POST, 'product_code');
+        $task_ID = filter_input(INPUT_POST, 'task_ID');
+        $task = get_task_by_ID($task_ID);
 
-        $registration = get_registration($employee['employeeID'], $product_code);
-        if ($registration === NULL) {
-            add_registration($employee['employeeID'], $product_code);
-            header("Location: .?action=success&product_code=$product_code");
-        } else {
-            $error = "Product ($product_code) is already registered. Please try again.";
-            include('../errors/error.php');
-        }
+        include('edit_task_form.php');
         break;
 
-    case 'success':
+    case 'update_task':
         $employee = $_SESSION['employee'];
-        $product_code = filter_input(INPUT_GET, 'product_code');
-        $message = "Product ($product_code) was registered successfully.";
-        include('product_register.php');
+        $task_ID = filter_input(INPUT_POST, 'task_ID');
+        $status = filter_input(INPUT_POST, 'status');
+        $hours = filter_input(INPUT_POST, 'hours');
+
+        if ($status < 0 || $hours < 0) {
+            $error .= "No negative numbers. Please try again.";
+            include('../errors/error.php');
+            exit();
+        } 
+
+        update_task($task_ID, $status, $hours);
+
+        header("Location: .?action=display_tasks");
         break;
 
     case 'logout':

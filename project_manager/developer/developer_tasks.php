@@ -17,14 +17,13 @@
                 <td><?php echo htmlspecialchars($task['description']); ?></td>
                 <td><?php echo htmlspecialchars(date("n-j-y", strtotime($task['startDate']))); ?></td>
                 <td><?php echo htmlspecialchars(date("n-j-y"), strtotime($task['dueDate'])); ?></td>
-                <td><?php echo htmlspecialchars($task['status']); ?></td>
+                <td><?php echo htmlspecialchars($task['status']); ?>%</td>
                 <td><?php echo htmlspecialchars($task['hours']); ?></td>
                 <td>
                     <form action="." method="post">
-                        <input type="hidden" name="action"
-                            value="edit_task_hours">
-                        <input type="hidden" value="<?php echo $task['taskID']; ?>">
-                        <input type="submit" value="Edit Hours">
+                        <input type="hidden" name="action" value="edit_task_form">
+                        <input type="hidden" name="task_ID" value="<?php echo $task['taskID']; ?>">
+                        <input type="submit" value="Edit">
                     </form>
                 </td>
             </tr>
