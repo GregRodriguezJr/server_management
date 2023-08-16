@@ -3,6 +3,7 @@ require_once "../util/secure_conn.php";
 require('../model/database.php');
 require('../model/employee_db.php');
 require('../model/tasks_db.php');
+require('../model/projects_db.php');
 
 // Start session
 session_start();
@@ -59,6 +60,8 @@ switch ($action) {
             
             $_SESSION['employee'] = $employee;
         }
+        $tasks = get_all_tasks();
+        $projects = get_all_projects();
         include('manager_menu.php');
         break;
 

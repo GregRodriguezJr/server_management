@@ -1,5 +1,3 @@
-<!-- Greg Rodriguez -->
-<!-- Ch. 21 Project -->
 <?php
 function get_admin_by_username($username) {
     global $db;
