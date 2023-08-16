@@ -68,6 +68,7 @@ switch ($action) {
         break;
 
     case 'show_client_add':
+        $employee = $_SESSION['employee'];
         include('client_add.php');
         break;
 
@@ -102,7 +103,45 @@ switch ($action) {
         break;
 
     case 'show_project_add':
+        $employee = $_SESSION['employee'];
+        $clients = get_all_clients();
+        $employees = get_all_employees();
         include('project_add.php');
+        break;
+
+        case 'add_project':
+            $employee = $_SESSION['employee'];
+            $client_ID = filter_input(INPUT_POST, 'client_ID');
+            $name = filter_input(INPUT_POST, 'name');
+            $description = filter_input(INPUT_POST, 'description');
+            $status = filter_input(INPUT_POST, 'status');
+            $start_date = filter_input(INPUT_POST, 'start_date');
+            $due_date = filter_input(INPUT_POST, 'due_date');
+            $employee_ID = filter_input(INPUT_POST, 'employee_ID');
+            add_project($client_ID, $name, $description, $status, $start_date, $due_date, $employee_ID);
+            header('Location: .?action=display_manager_menu');
+        break;
+
+    case 'edit_project_form':
+        $employee = $_SESSION['employee'];
+        $project_id = filter_input(INPUT_POST, 'project_ID');
+        $project = get_project_by_id($project_id);
+        $employees = get_all_employees();
+        $clients = get_all_clients();
+        include('project_update.php');
+        break;
+
+    case 'update_project':
+        $project_ID = filter_input(INPUT_POST, 'project_ID');
+        $client_ID = filter_input(INPUT_POST, 'client_ID');
+        $name = filter_input(INPUT_POST, 'name');
+        $description = filter_input(INPUT_POST, 'description');
+        $status = filter_input(INPUT_POST, 'status');
+        $start_date = filter_input(INPUT_POST, 'start_date');
+        $due_date = filter_input(INPUT_POST, 'due_date');
+        $employee_ID = filter_input(INPUT_POST, 'employee_ID');
+        update_project($project_ID, $client_ID, $name, $description, $status, $start_date, $due_date, $employee_ID);
+        header('Location: .?action=display_manager_menu');
         break;
 
     case 'show_task_add':
@@ -122,12 +161,6 @@ switch ($action) {
         $task_ID = filter_input(INPUT_POST, 'task_ID');
         $status = filter_input(INPUT_POST, 'status');
         $hours = filter_input(INPUT_POST, 'hours');
-
-        if ($status < 0 || $hours < 0) {
-            $error .= "No negative numbers. Please try again.";
-            include('../errors/error.php');
-            exit();
-        } 
 
         update_task($task_ID, $status, $hours);
 

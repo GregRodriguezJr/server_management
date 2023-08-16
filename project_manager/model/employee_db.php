@@ -1,7 +1,7 @@
 <?php
 function get_all_employees() {
     global $db;
-    $query = 'SELECT * FROM employee
+    $query = 'SELECT * FROM employees
               ORDER BY lastName';
     try {
         $statement = $db->prepare($query);
@@ -16,7 +16,7 @@ function get_all_employees() {
 
 function get_employee_by_last_name($last_name) {
     global $db;
-    $query = 'SELECT * FROM employee
+    $query = 'SELECT * FROM employees
               WHERE lastName = :last_name
               ORDER BY lastName';
     try {
@@ -33,8 +33,8 @@ function get_employee_by_last_name($last_name) {
 
 function get_employee_by_ID($employee_id) {
     global $db;
-    $query = 'SELECT * FROM employee
-              WHERE employeeget_employeeID = :employeeget_employee_id';
+    $query = 'SELECT * FROM employees
+              WHERE employeeID = :employee_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':employee_id', $employee_id);
@@ -49,7 +49,7 @@ function get_employee_by_ID($employee_id) {
 
 function get_employee_by_email($email) {
     global $db;
-    $query = 'SELECT * FROM employee
+    $query = 'SELECT * FROM employees
               WHERE email = :email';
     try {
         $statement = $db->prepare($query);
@@ -70,7 +70,7 @@ function get_employee_by_email($email) {
 
 function delete_employee($employee_id) {
     global $db;
-    $query = 'DELETE FROM employee
+    $query = 'DELETE FROM employees
               WHERE employeeID = :employee_id';
     try {
         $statement = $db->prepare($query);
@@ -87,7 +87,7 @@ function add_employee($first_name, $last_name,
         $address, $city, $state, $postal_code, $country_code,
         $phone, $email, $password) {
     global $db;
-    $query = 'INSERT INTO employee
+    $query = 'INSERT INTO employees
                  (firstName, lastName,
                   address, city, state, postalCode, countryCode,
                   phone, email, password)
@@ -122,7 +122,7 @@ function update_employee($employee_id, $first_name, $last_name,
         $address, $city, $state, $postal_code, $country_code,
         $phone, $email, $password) {
     global $db;
-    $query = 'UPDATE employee
+    $query = 'UPDATE employees
               SET firstName = :first_name,
                   lastName = :last_name,
                   address = :address,

@@ -14,7 +14,7 @@
             <input type="hidden" name="action" value="show_task_add">
             <input type="submit" value="Add Task">
         </form>
-        <h2>All Clients</h2>
+        <h2 style="padding: 1em 0;">All Clients</h2>
         <table>
             <tr>
                 <th>Client ID</th>
@@ -41,10 +41,11 @@
             </tr>
             <?php endforeach; ?>
         </table>
-        <h2>All Projects</h2>
+        <h2 style="padding: 1em 0;">All Projects</h2>
         <table>
             <tr>
                 <th>Project ID</th>
+                <th>Company Name</th>
                 <th>Project Name</th>
                 <th>Description</th>
                 <th>Start Date</th>
@@ -58,6 +59,7 @@
                 <?php $fullName = $project['firstName'] . " " . $project['lastName'] ; ?>
             <tr>
                 <td><?php echo htmlspecialchars($project['projectID']); ?></td>
+                <td><?php echo htmlspecialchars($project['clientName']); ?></td>
                 <td><?php echo htmlspecialchars($project['name']); ?></td>
                 <td><?php echo htmlspecialchars($project['description']); ?></td>
                 <td><?php echo htmlspecialchars($project['startDate']); ?></td>
@@ -75,7 +77,7 @@
             </tr>
             <?php endforeach; ?>
         </table>
-        <h2>All Task</h2>
+        <h2 style="padding: 1em 0;">All Task</h2>
         <table>
             <tr>
                 <th>Project ID</th>

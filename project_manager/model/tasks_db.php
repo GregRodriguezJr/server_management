@@ -1,10 +1,10 @@
 <?php
 function get_all_tasks() {
     global $db;
-    $query = 'SELECT tasks.*, employee.firstName, employee.lastName
+    $query = 'SELECT tasks.*, employees.firstName, employees.lastName
                 FROM tasks
-                JOIN employee 
-                ON tasks.employeeID = employee.employeeID
+                JOIN employees 
+                ON tasks.employeeID = employees.employeeID
                 ORDER BY tasks.status';
     try {
         $statement = $db->prepare($query);
