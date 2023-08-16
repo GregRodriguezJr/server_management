@@ -1,9 +1,23 @@
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Project Manager Menu</h1>
+        <h2><a href="../project_manager_reports/">Reports</a></h2>
+        <form action="" method="post" style="padding: .5em 0;">
+            <input type="hidden" name="action" value="show_client_add">
+            <input type="submit" value="Add Client">
+        </form>
+        <form action="" method="post" style="padding: .5em 0;">
+            <input type="hidden" name="action" value="show_project_add">
+            <input type="submit" value="Add Project">
+        </form>
+        <form action="" method="post" style="padding: .5em 0;">
+            <input type="hidden" name="action" value="show_task_add">
+            <input type="submit" value="Add Task">
+        </form>
         <h2>All Projects</h2>
         <table>
             <tr>
+                <th>Project ID</th>
                 <th>Project Name</th>
                 <th>Description</th>
                 <th>Start Date</th>
@@ -16,6 +30,7 @@
             <?php foreach ($projects as $project) : ?>
                 <?php $fullName = $project['firstName'] . " " . $project['lastName'] ; ?>
             <tr>
+                <td><?php echo htmlspecialchars($project['projectID']); ?></td>
                 <td><?php echo htmlspecialchars($project['name']); ?></td>
                 <td><?php echo htmlspecialchars($project['description']); ?></td>
                 <td><?php echo htmlspecialchars($project['startDate']); ?></td>
@@ -36,6 +51,7 @@
         <h2>All Task</h2>
         <table>
             <tr>
+                <th>Project ID</th>
                 <th>Task Name</th>
                 <th>Description</th>
                 <th>Start Date</th>
@@ -48,6 +64,7 @@
             <?php foreach ($tasks as $task) : ?>
                 <?php $fullName = $task['firstName'] . " " . $task['lastName'] ; ?>
             <tr>
+                <td><?php echo htmlspecialchars($task['projectID']); ?></td>
                 <td><?php echo htmlspecialchars($task['name']); ?></td>
                 <td><?php echo htmlspecialchars($task['description']); ?></td>
                 <td><?php echo htmlspecialchars($task['startDate']); ?></td>
