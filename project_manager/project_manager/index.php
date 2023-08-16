@@ -4,6 +4,7 @@ require('../model/database.php');
 require('../model/employee_db.php');
 require('../model/tasks_db.php');
 require('../model/projects_db.php');
+require('../model/clients_db.php');
 
 // Start session
 session_start();
@@ -60,9 +61,52 @@ switch ($action) {
             
             $_SESSION['employee'] = $employee;
         }
-        $tasks = get_all_tasks();
+        $clients = get_all_clients();
         $projects = get_all_projects();
+        $tasks = get_all_tasks();
         include('manager_menu.php');
+        break;
+
+    case 'show_client_add':
+        include('client_add.php');
+        break;
+
+    case 'add_client':
+        $employee = $_SESSION['employee'];
+        $name = filter_input(INPUT_POST, 'name');
+        $first_name = filter_input(INPUT_POST, 'first_name');
+        $last_name = filter_input(INPUT_POST, 'last_name');
+        $email = filter_input(INPUT_POST, 'email');
+        $phone = filter_input(INPUT_POST, 'phone');
+        add_client($name, $first_name, $last_name, $email, $phone);
+        header('Location: .?action=display_manager_menu');
+        break;
+
+    case 'edit_client_form':
+        $employee = $_SESSION['employee'];
+        $client_id = filter_input(INPUT_POST, 'client_ID');
+        $client = get_client_by_id($client_id);
+        include('client_update.php');
+        break;
+
+    case 'update_client':
+        $employee = $_SESSION['employee'];
+        $client_ID = filter_input(INPUT_POST, 'client_ID');
+        $name = filter_input(INPUT_POST, 'name');
+        $first_name = filter_input(INPUT_POST, 'first_name');
+        $last_name = filter_input(INPUT_POST, 'last_name');
+        $email = filter_input(INPUT_POST, 'email');
+        $phone = filter_input(INPUT_POST, 'phone');
+        update_client($client_ID, $name, $first_name, $last_name, $email, $phone);
+        header('Location: .?action=display_manager_menu');
+        break;
+
+    case 'show_project_add':
+        include('project_add.php');
+        break;
+
+    case 'show_task_add':
+        include('task_add.php');
         break;
 
     case 'edit_task_form':

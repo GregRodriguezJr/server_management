@@ -14,6 +14,33 @@
             <input type="hidden" name="action" value="show_task_add">
             <input type="submit" value="Add Task">
         </form>
+        <h2>All Clients</h2>
+        <table>
+            <tr>
+                <th>Client ID</th>
+                <th>Company Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>&nbsp;</th>
+            </tr> <?php foreach ($clients as $client) : ?> <tr>
+                <td><?php echo htmlspecialchars($client['clientID']); ?></td>
+                <td><?php echo htmlspecialchars($client['name']); ?></td>
+                <td><?php echo htmlspecialchars($client['firstName']); ?></td>
+                <td><?php echo htmlspecialchars($client['lastName']); ?></td>
+                <td><?php echo htmlspecialchars($client['email']); ?></td>
+                <td><?php echo htmlspecialchars($client['phone']); ?></td>
+                <td>
+                    <form action="." method="post">
+                        <input type="hidden" name="action" value="edit_client_form">
+                        <input type="hidden" name="client_ID" value="<?php echo $client['clientID']; ?>">
+                        <input type="submit" value="Edit">
+                    </form>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
         <h2>All Projects</h2>
         <table>
             <tr>
