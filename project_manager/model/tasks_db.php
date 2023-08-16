@@ -59,7 +59,6 @@ function delete_task($task_ID) {
         $statement = $db->prepare($query);
         $statement->bindValue(':task_ID', $task_ID);
         $statement->execute();
-        $row_count = $statement->rowCount();
         $statement->closeCursor();
     } catch (PDOException $e) {
         display_db_error($e->getMessage());

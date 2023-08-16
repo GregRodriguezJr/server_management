@@ -15,8 +15,8 @@
             <tr>
                 <td><?php echo htmlspecialchars($task['name']); ?></td>
                 <td><?php echo htmlspecialchars($task['description']); ?></td>
-                <td><?php echo htmlspecialchars(date("n-j-y", strtotime($task['startDate']))); ?></td>
-                <td><?php echo htmlspecialchars(date("n-j-y"), strtotime($task['dueDate'])); ?></td>
+                <td><?php echo htmlspecialchars($task['startDate']); ?></td>
+                <td><?php echo htmlspecialchars($task['dueDate']); ?></td>
                 <td><?php echo htmlspecialchars($task['status']); ?>%</td>
                 <td><?php echo htmlspecialchars($task['hours']); ?></td>
                 <td>
