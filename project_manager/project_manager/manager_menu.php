@@ -1,7 +1,6 @@
 <?php include '../view/header.php'; ?>
     <main>
         <h1>Project Manager Menu</h1>
-        <h2><a href="../project_manager_reports/">Reports</a></h2>
         <form action="" method="post" style="padding: .5em 0;">
             <input type="hidden" name="action" value="show_client_add">
             <input type="submit" value="Add Client">

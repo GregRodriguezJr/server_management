@@ -1,6 +1,6 @@
 <?php include '../view/header.php'; ?>
     <main>
-        <h1>Edit Task</h1>
+        <h1>Edit Task Status/Hours</h1>
         <form action="" method="post" id="aligned">
             <label>Task Name:</label>
             <label style="width: 500px;"><?php echo $task['name']; ?></label>

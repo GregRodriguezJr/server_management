@@ -145,7 +145,24 @@ switch ($action) {
         break;
 
     case 'show_task_add':
+        $employee = $_SESSION['employee'];
+        $projects = get_all_projects();
+        $employees = get_all_employees();
         include('task_add.php');
+        break;
+
+    case 'add_task':
+        $employee = $_SESSION['employee'];
+        $project_ID = filter_input(INPUT_POST, 'project_ID');
+        $name = filter_input(INPUT_POST, 'name');
+        $description = filter_input(INPUT_POST, 'description');
+        $status = filter_input(INPUT_POST, 'status');
+        $start_date = filter_input(INPUT_POST, 'start_date');
+        $due_date = filter_input(INPUT_POST, 'due_date');
+        $employee_ID = filter_input(INPUT_POST, 'employee_ID');
+        $hours = filter_input(INPUT_POST, 'hours');
+        add_task($project_ID, $name, $description, $status, $start_date, $due_date, $employee_ID, $hours);
+        header('Location: .?action=display_manager_menu');
         break;
 
     case 'edit_task_form':
