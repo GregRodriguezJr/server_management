@@ -167,10 +167,10 @@ switch ($action) {
 
     case 'edit_task_form':
         $employee = $_SESSION['employee'];
-        $task_ID = filter_input(INPUT_POST, 'task_ID');
-        $task = get_task_by_ID($task_ID);
+        // $task_ID = filter_input(INPUT_POST, 'task_ID');
+        // $task = get_task_by_ID($task_ID);
 
-        include('edit_task_form.php');
+        include('task_update.php');
         break;
 
     case 'update_task':
