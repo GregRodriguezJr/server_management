@@ -72,10 +72,11 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `mydb`.`employees` (
 `employee_id` INT(11) NOT NULL,
 `employee_first_name` VARCHAR(45) NOT NULL,
+`employee_last_name` VARCHAR(45) NOT NULL,
 `employee_position` VARCHAR(45) NOT NULL,
 `employee_date_of_birth` VARCHAR(45) NOT NULL,
 `employee_address` VARCHAR(45) NOT NULL,
-`employee_contact_number` VARCHAR(10) NOT NULL,
+`employee_contact_number` VARCHAR(12) NOT NULL,
 `employee_email` VARCHAR(45) NOT NULL,
 PRIMARY KEY (`employee_id`))
 ENGINE = InnoDB
