@@ -36,7 +36,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `mydb`.`account`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`account` (
+CREATE TABLE IF NOT EXISTS `mydb`.`accounts` (
 `account_id` INT(11) NOT NULL,
 `client_id` INT(11) NOT NULL,
 `account_type` VARCHAR(45) NOT NULL,
@@ -46,7 +46,7 @@ PRIMARY KEY (`account_id`),
 INDEX `client_id_idx` (`client_id` ASC) VISIBLE,
 CONSTRAINT `client_id`
 FOREIGN KEY (`client_id`)
-REFERENCES `mydb`.`client` (`client_id`))
+REFERENCES `mydb`.`clients` (`client_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -57,11 +57,13 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `mydb`.`card_details` (
 `card_id` INT(11) NOT NULL,
 `account_id` INT(11) NOT NULL,
+`card_number` VARCHAR(16) NOT NULL,
+`card_type` VARCHAR(12) NOT NULL,
 PRIMARY KEY (`card_id`),
 INDEX `account_id` (`account_id` ASC) VISIBLE,
 CONSTRAINT `card_details_ibfk_1`
 FOREIGN KEY (`account_id`)
-REFERENCES `mydb`.`account` (`account_id`))
+REFERENCES `mydb`.`accounts` (`account_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
