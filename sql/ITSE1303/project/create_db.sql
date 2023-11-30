@@ -91,6 +91,8 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `mydb`.`transactions` (
 `transaction_id` INT(11) NOT NULL AUTO_INCREMENT,
 `account_id` INT(11) NOT NULL,
+`transaction_amount` DECIMAL(15,2),
+`transaction_type` VARCHAR(12),
 PRIMARY KEY (`transaction_id`),
 INDEX `account_id` (`account_id` ASC) VISIBLE,
 CONSTRAINT `transactions_ibfk_1`
