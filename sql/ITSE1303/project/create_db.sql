@@ -107,15 +107,15 @@ CREATE TABLE IF NOT EXISTS `mydb`.`loans` (
 `loan_id` INT NOT NULL,
 `account_id` INT NOT NULL,
 `loan_type` VARCHAR(45) NOT NULL,
-`loan_amount` VARCHAR(45) NOT NULL,
-`interest_rate` FLOAT NOT NULL,
+`loan_amount` DECIMAL(15,2) NOT NULL,
+`interest_rate` DECIMAL(15,2) NOT NULL,
 `loan_term` VARCHAR(45) NOT NULL,
 `date_issued` DATE NOT NULL,
 PRIMARY KEY (`loan_id`),
 INDEX `account_id_idx` (`account_id` ASC) VISIBLE,
 CONSTRAINT `loans_ibfk_1`
 FOREIGN KEY (`account_id`)
-REFERENCES `mydb`.`account` (`account_id`)
+REFERENCES `mydb`.`accounts` (`account_id`)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 )
