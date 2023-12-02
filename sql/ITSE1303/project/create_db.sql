@@ -97,7 +97,7 @@ PRIMARY KEY (`transaction_id`),
 INDEX `account_id` (`account_id` ASC) VISIBLE,
 CONSTRAINT `transactions_ibfk_1`
 FOREIGN KEY (`account_id`)
-REFERENCES `mydb`.`account` (`account_id`))
+REFERENCES `mydb`.`accounts` (`account_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
