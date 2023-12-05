@@ -57,7 +57,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `mydb`.`card_details` (
 `card_id` INT(11) NOT NULL,
 `account_id` INT(11) NOT NULL,
-`card_number` VARCHAR(16) NOT NULL,
+`card_number` VARCHAR(17) NOT NULL,
 `card_type` VARCHAR(12) NOT NULL,
 PRIMARY KEY (`card_id`),
 INDEX `account_id` (`account_id` ASC) VISIBLE,
